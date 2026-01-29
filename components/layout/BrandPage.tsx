@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 
 const heroCards = [
@@ -73,59 +74,58 @@ export function BrandPage() {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-6"
           >
-            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-              Software Engineering
-            </p>
+            <p className="text-sm uppercase tracking-[0.2em] text-slate-500">Software for humans</p>
             <h1 className="text-4xl font-semibold text-ink sm:text-5xl">
-              Hello, I’m Zaid. I build software that turns ideas into impact.
+              Hi, I’m Zaid. I’m an engineer who cares about thoughtful products and the people using them.
             </h1>
             <motion.p
-              className="text-lg text-slate-600"
+              className="text-lg font-medium text-ink"
               animate={
                 prefersReducedMotion
                   ? undefined
                   : {
-                      y: [0, -6, 0],
-                      rotate: [0, -1, 0],
+                      backgroundPosition: ["0% 50%", "100% 50%"],
                     }
               }
               transition={
                 prefersReducedMotion
                   ? undefined
                   : {
-                      duration: 3.2,
+                      duration: 4,
                       repeat: Infinity,
+                      repeatType: "reverse",
                       ease: "easeInOut",
                     }
               }
+              style={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      backgroundImage: "linear-gradient(120deg, #1f1f3a, #7c7cf2, #1f1f3a)",
+                      backgroundSize: "200% 200%",
+                      WebkitBackgroundClip: "text",
+                      color: "transparent",
+                    }
+              }
             >
-              “I help ideas, products, and systems explode in impact — responsibly.”
+              “I help ideas, products, and systems grow into meaningful impact, responsibly.”
             </motion.p>
             <p className="text-base text-slate-500">
-              Clear thinking. Real-world systems. Thoughtful execution.
+              I ship calm, well-considered software that’s grounded in real conversations, not buzzwords.
             </p>
             <div className="flex flex-wrap items-center gap-4">
-              <button className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-soft">
+              <Link
+                className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-soft"
+                href="/contact"
+              >
                 Contact Me
-              </button>
-              <button className="rounded-full border border-white/80 bg-white/80 px-6 py-3 text-sm font-semibold text-ink">
+              </Link>
+              <Link
+                className="rounded-full border border-white/80 bg-white/80 px-6 py-3 text-sm font-semibold text-ink"
+                href="/work"
+              >
                 View Work
-              </button>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-3">
-              {[
-                { title: "Availability", detail: "Now booking Q2" },
-                { title: "Focus", detail: "Products & platforms" },
-                { title: "Response", detail: "Within 24 hours" },
-              ].map((item) => (
-                <div
-                  className="rounded-2xl border border-white/80 bg-white/90 p-4 text-sm text-slate-600 shadow-soft"
-                  key={item.title}
-                >
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{item.title}</p>
-                  <p className="mt-2 font-semibold text-ink">{item.detail}</p>
-                </div>
-              ))}
+              </Link>
             </div>
           </motion.div>
           <div className="relative grid gap-4 sm:grid-cols-2">
