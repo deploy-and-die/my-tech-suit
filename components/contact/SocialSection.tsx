@@ -32,7 +32,7 @@ const socialCards: SocialCard[] = [
 
 export function SocialSection() {
   return (
-    <section className="space-y-8 rounded-[32px] border border-white/50 bg-lavender/60 p-8">
+    <section className="space-y-8 rounded-[32px] border border-accent/25 bg-lavender/60 p-8">
       <div className="space-y-3">
         <p className="text-xs font-semibold uppercase tracking-[0.35em] text-slate-500">Community &amp; Writing</p>
         <p className="max-w-2xl text-sm text-slate-600">
@@ -43,17 +43,17 @@ export function SocialSection() {
         {socialCards.map((card) => (
           <article
             key={card.title}
-            className="flex flex-col gap-4 rounded-3xl border border-white/70 bg-white/90 p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-soft motion-reduce:transform-none motion-reduce:transition-none"
+            className="flex flex-col gap-4 rounded-3xl border border-accent/15 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-soft motion-reduce:transform-none motion-reduce:transition-none"
           >
             <div className="flex items-center gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lavender/60 text-ink">
+              <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lavender/70 text-ink">
                 {card.icon}
               </span>
               <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">{card.title}</h3>
             </div>
             <p className="flex-1 text-base text-slate-600">{card.description}</p>
             <Link
-              className="inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-accentDark"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-accentDark transition hover:text-ink"
               href={card.href}
               rel="noreferrer"
               target="_blank"
@@ -109,4 +109,3 @@ function ArrowIcon() {
     </svg>
   );
 }
-

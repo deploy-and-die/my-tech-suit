@@ -76,7 +76,7 @@ export function Sidebar() {
           <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Explore</p>
         </div>
         <button
-          className="rounded-full border border-white/70 bg-lavender px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink"
+          className="rounded-full border border-white/70 bg-[#27187e] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
           onClick={() => setIsOpen(true)}
           type="button"
         >
@@ -86,13 +86,13 @@ export function Sidebar() {
       {isOpen ? (
         <div className="fixed inset-0 z-40 bg-ink/40 lg:hidden" onClick={() => setIsOpen(false)}>
           <aside
-            className="h-full w-72 border-r border-white/70 bg-lavender px-6 py-10 text-ink shadow-soft"
+            className="h-full w-72 border-r border-white/70 bg-[#27187e] px-6 py-10 text-white shadow-soft"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <p className="text-sm uppercase tracking-[0.2em] text-slate-500">Explore</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-white/70">Explore</p>
               <button
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500"
+                className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70"
                 onClick={() => setIsOpen(false)}
                 type="button"
               >
@@ -101,18 +101,18 @@ export function Sidebar() {
             </div>
             <div className="mt-8 space-y-8">
               <nav className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
                   Primary
                 </p>
                 <ul className="space-y-4 text-lg font-semibold">
                   {primaryLinks.map((link) => (
                     <li key={link.href}>
                       <Link
-                        className="flex items-center gap-3 text-ink/80 transition hover:text-accent"
+                        className="group flex items-center gap-3 text-white/90 transition hover:text-[#ffd6ff]"
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/80 text-accent">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
                           {link.icon}
                         </span>
                         {link.label}
@@ -122,18 +122,18 @@ export function Sidebar() {
                 </ul>
               </nav>
               <nav className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
                   Don’t Look Here
                 </p>
-                <ul className="space-y-3 text-base text-slate-400">
+                <ul className="space-y-3 text-base text-white/70">
                   {secondaryLinks.map((link) => (
                     <li key={link.href}>
                       <Link
-                        className="flex items-center gap-3 transition hover:text-accentLight"
+                        className="group flex items-center gap-3 transition text-white/80 hover:text-[#ffd6ff]"
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/60 text-accentLight">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
                           {link.icon}
                         </span>
                         {link.label}
@@ -147,7 +147,7 @@ export function Sidebar() {
         </div>
       ) : null}
       <aside
-        className={`relative hidden border-r border-white/70 bg-lavender px-6 py-10 text-ink transition-all duration-300 lg:block ${
+        className={`relative hidden border-r border-white/70 bg-[#27187e] px-6 py-10 text-white transition-all duration-300 lg:block lg:sticky lg:top-0 lg:h-screen ${
           isExpanded ? "w-72" : "w-[7.5rem]"
         }`}
         onMouseEnter={handleInteractionStart}
@@ -215,34 +215,34 @@ export function Sidebar() {
             }`}
           >
             <nav className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
                 Primary
               </p>
               <ul className="space-y-4 text-lg font-semibold">
                 {primaryLinks.map((link) => (
                   <li key={link.href}>
-                    <Link className="flex items-center gap-3 text-ink/80 hover:text-accent" href={link.href}>
-                      <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/80 text-accent">
-                        {link.icon}
-                      </span>
-                      {link.label}
+                  <Link className="group flex items-center gap-3 text-white/90 transition hover:text-[#ffd6ff]" href={link.href}>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
+                      {link.icon}
+                    </span>
+                    {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-          </nav>
+            </nav>
             <nav className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
                 Don’t Look Here
               </p>
-              <ul className="space-y-3 text-base text-slate-400">
+              <ul className="space-y-3 text-base text-white/70">
                 {secondaryLinks.map((link) => (
                   <li key={link.href}>
-                    <Link className="flex items-center gap-3 hover:text-accentLight" href={link.href}>
-                      <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/70 text-accentLight">
-                        {link.icon}
-                      </span>
-                      {link.label}
+                  <Link className="group flex items-center gap-3 text-white/80 transition hover:text-[#ffd6ff]" href={link.href}>
+                    <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
+                      {link.icon}
+                    </span>
+                    {link.label}
                     </Link>
                   </li>
                 ))}

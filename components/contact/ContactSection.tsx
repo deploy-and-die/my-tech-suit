@@ -46,7 +46,7 @@ const contactCards: ContactCard[] = [
 
 export function ContactSection() {
   return (
-    <section className="space-y-10 rounded-[32px] border border-white/60 bg-white/70 p-8 shadow-soft">
+    <section className="space-y-10 rounded-[32px] border border-accent/30 bg-white/80 p-8 shadow-soft backdrop-blur">
       <div className="space-y-4">
         <div className="inline-flex items-center gap-3 rounded-full bg-lavender px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-ink">
           Send me a note
@@ -77,7 +77,7 @@ export function ContactSection() {
 function ContactCard({ card }: { card: ContactCard }) {
   const { title, description, mutedLine, action, icon } = card;
   return (
-    <div className="flex min-h-[230px] flex-col justify-between rounded-3xl border border-white/70 bg-white/90 p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-soft motion-reduce:transform-none motion-reduce:transition-none">
+    <div className="flex min-h-[230px] flex-col justify-between rounded-3xl border border-accent/10 bg-white p-6 shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-soft motion-reduce:transform-none motion-reduce:transition-none">
       <div className="space-y-3">
         <div className="flex items-center gap-3">
           <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lavender/60 text-ink">
@@ -98,7 +98,7 @@ function CardAction({ action }: { action: ContactAction }) {
   const linkClasses =
     "inline-flex items-center gap-2 text-sm font-semibold text-accent transition hover:text-accentDark";
   const buttonClasses =
-    "inline-flex items-center gap-2 rounded-full border border-ink/10 px-4 py-2 text-sm font-semibold text-ink transition hover:bg-lavender/50";
+    "inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-accentDark";
   const className = variant === "button" ? buttonClasses : linkClasses;
 
   if (href.startsWith("mailto:") || href.startsWith("tel:")) {
