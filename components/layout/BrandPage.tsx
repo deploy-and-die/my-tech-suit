@@ -63,8 +63,22 @@ export function BrandPage() {
     },
   });
 
+  const waveAnimation = (index: number, baseDelay = 0) =>
+    prefersReducedMotion
+      ? undefined
+      : {
+          y: [0, -8, 0],
+          transition: {
+            duration: 4.5,
+            repeat: Infinity,
+            repeatType: "mirror",
+            delay: baseDelay + index * 0.4,
+            ease: "easeInOut",
+          },
+        };
+
   return (
-    <div className="space-y-20">
+    <div className="space-y-12 pt-12">
       <section className="space-y-10">
         <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
           <motion.div
@@ -133,10 +147,29 @@ export function BrandPage() {
               <motion.div
                 key={card.title}
                 initial="hidden"
-                animate="show"
+                animate={
+                  prefersReducedMotion
+                    ? "show"
+                    : {
+                        opacity: 1,
+                        y: 0,
+                        scale: [1, 1.05, 1],
+                      }
+                }
                 variants={float(index)}
                 className={`rounded-3xl ${card.tone} p-6 shadow-soft`}
-                style={!prefersReducedMotion ? { transform: `translateY(${index % 2 === 0 ? -6 : 6}px)` } : undefined}
+                transition={
+                  prefersReducedMotion
+                    ? { duration: 0.6, ease: "easeOut", delay: index * 0.1 }
+                    : {
+                        duration: 4,
+                        repeat: Infinity,
+                        repeatDelay: 0.6,
+                        delay: 1.5 + index * 0.7,
+                        ease: "easeInOut",
+                      }
+                }
+                style={!prefersReducedMotion ? { transformOrigin: "center" } : undefined}
               >
                 <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{card.title}</p>
                 <p className="mt-6 text-2xl font-semibold text-ink">{card.title}</p>
@@ -171,6 +204,7 @@ export function BrandPage() {
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
               className="rounded-3xl border border-accent/20 bg-white/80 p-6 shadow-soft"
               whileHover={prefersReducedMotion ? undefined : { y: -4 }}
+              animate={waveAnimation(index)}
             >
               <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{card.title}</p>
               <p className="mt-4 text-xl font-semibold text-ink">{card.title}</p>
@@ -203,6 +237,7 @@ export function BrandPage() {
               variants={fadeUp}
               transition={{ duration: 0.6, delay: index * 0.12, ease: "easeOut" }}
               className="rounded-3xl border border-accent/20 bg-white/85 p-6 shadow-soft"
+              animate={waveAnimation(index, 0.5)}
             >
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-lavender/80 text-accentDark">
                 <span className="text-lg font-semibold">{index + 1}</span>
