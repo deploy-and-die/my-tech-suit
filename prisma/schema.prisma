@@ -1,0 +1,80 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}
+
+enum ResourceType {
+  BLOG
+  CASE_STUDY
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  image     String?
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+
+  comments      Comment[]
+  forumPosts    ForumPost[]
+  forumComments ForumComment[]
+}
+
+model Comment {
+  id           String       @id @default(cuid())
+  content      String
+  userId       String
+  resourceId   String
+  resourceType ResourceType
+  createdAt    DateTime     @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([resourceId, resourceType])
+}
+
+model ForumCategory {
+  id          String      @id @default(cuid())
+  name        String
+  description String
+  posts       ForumPost[]
+}
+
+model ForumPost {
+  id          String        @id @default(cuid())
+  title       String
+  content     String
+  userId      String
+  categoryId  String
+  createdAt   DateTime      @default(now())
+
+  user      User          @relation(fields: [userId], references: [id])
+  category  ForumCategory @relation(fields: [categoryId], references: [id])
+  comments  ForumComment[]
+
+  @@index([categoryId])
+}
+
+model ForumComment {
+  id        String   @id @default(cuid())
+  content   String
+  postId    String
+  userId    String
+  createdAt DateTime @default(now())
+
+  post ForumPost @relation(fields: [postId], references: [id])
+  user User      @relation(fields: [userId], references: [id])
+
+  @@index([postId])
+}
