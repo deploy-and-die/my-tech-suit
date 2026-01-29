@@ -5,6 +5,7 @@ type SocialCard = {
   description: string;
   href: string;
   icon: JSX.Element;
+  platform: string;
 };
 
 const socialCards: SocialCard[] = [
@@ -14,6 +15,7 @@ const socialCards: SocialCard[] = [
       "Work, career milestones, and conversations around software, systems, and growth.",
     href: "https://www.linkedin.com/in/zaid-ali-b409501a4/",
     icon: <LinkedInIcon />,
+    platform: "LinkedIn",
   },
   {
     title: "Long-form writing",
@@ -21,12 +23,14 @@ const socialCards: SocialCard[] = [
       "Thoughts on software engineering, lessons learned, and ideas worth thinking through slowly.",
     href: "https://medium.com/@zaidali753",
     icon: <PenIcon />,
+    platform: "Medium",
   },
   {
     title: "Life & travel",
     description: "Travel, moments, and the human side of building — mostly through visuals.",
     href: "https://www.instagram.com/step_up_zen/",
     icon: <CameraIcon />,
+    platform: "Instagram",
   },
 ];
 
@@ -49,7 +53,10 @@ export function SocialSection() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-lavender/70 text-ink">
                 {card.icon}
               </span>
-              <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">{card.title}</h3>
+              <div>
+                <h3 className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">{card.title}</h3>
+                <p className="text-xs text-slate-400">{card.platform}</p>
+              </div>
             </div>
             <p className="flex-1 text-base text-slate-600">{card.description}</p>
             <Link
@@ -58,7 +65,10 @@ export function SocialSection() {
               rel="noreferrer"
               target="_blank"
             >
-              Visit
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-lavender/40 text-ink">
+                {card.icon}
+              </span>
+              <span>Visit</span>
               <ArrowIcon />
             </Link>
           </article>
