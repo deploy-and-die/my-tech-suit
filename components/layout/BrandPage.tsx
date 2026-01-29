@@ -4,11 +4,11 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 
 const heroCards = [
-  { title: "Systems", tone: "bg-white/80" },
-  { title: "Ideas", tone: "bg-lavender" },
-  { title: "Impact", tone: "bg-white/70" },
-  { title: "Experiments", tone: "bg-white/80" },
-  { title: "Learning", tone: "bg-lavender/70" },
+  { title: "Systems", tone: "bg-gradient-to-br from-accentLight/40 via-white to-white/90" },
+  { title: "Ideas", tone: "bg-gradient-to-br from-lavender/60 to-white" },
+  { title: "Impact", tone: "bg-gradient-to-br from-white to-accent/30" },
+  { title: "Experiments", tone: "bg-gradient-to-br from-white via-lavender/40 to-accentLight/30" },
+  { title: "Learning", tone: "bg-gradient-to-br from-lavender/70 to-white" },
 ];
 
 const aboutCards = [
@@ -101,8 +101,8 @@ export function BrandPage() {
                 prefersReducedMotion
                   ? undefined
                   : {
-                      backgroundImage: "linear-gradient(120deg, #1f1f3a, #7c7cf2, #1f1f3a)",
-                      backgroundSize: "200% 200%",
+                      backgroundImage: "linear-gradient(120deg, #1f1f3a, #c8b6ff, #b8c0ff, #1f1f3a)",
+                      backgroundSize: "220% 220%",
                       WebkitBackgroundClip: "text",
                       color: "transparent",
                     }
@@ -115,13 +115,13 @@ export function BrandPage() {
             </p>
             <div className="flex flex-wrap items-center gap-4">
               <Link
-                className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-soft"
+                className="rounded-full bg-accentDark px-6 py-3 text-sm font-semibold text-white shadow-soft transition hover:bg-ink"
                 href="/contact"
               >
                 Contact Me
               </Link>
               <Link
-                className="rounded-full border border-white/80 bg-white/80 px-6 py-3 text-sm font-semibold text-ink"
+                className="rounded-full border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition hover:border-accentDark hover:text-accentDark"
                 href="/work"
               >
                 View Work
@@ -169,7 +169,7 @@ export function BrandPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-              className="rounded-3xl border border-white/80 bg-white/90 p-6 shadow-soft"
+              className="rounded-3xl border border-accent/20 bg-white/80 p-6 shadow-soft"
               whileHover={prefersReducedMotion ? undefined : { y: -4 }}
             >
               <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{card.title}</p>
@@ -202,9 +202,9 @@ export function BrandPage() {
               viewport={{ once: true, amount: 0.2 }}
               variants={fadeUp}
               transition={{ duration: 0.6, delay: index * 0.12, ease: "easeOut" }}
-              className="rounded-3xl border border-white/80 bg-white/90 p-6 shadow-soft"
+              className="rounded-3xl border border-accent/20 bg-white/85 p-6 shadow-soft"
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-lavender text-accent">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-lavender/80 text-accentDark">
                 <span className="text-lg font-semibold">{index + 1}</span>
               </div>
               <p className="mt-5 text-xl font-semibold text-ink">{card.title}</p>

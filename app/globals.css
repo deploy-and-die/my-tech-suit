@@ -7,8 +7,9 @@
 }
 
 body {
-  @apply bg-peach text-ink;
   font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background: radial-gradient(circle at top, #e7c6ff 0%, #c8b6ff 40%, #bbd0ff 100%);
+  color: #1f1f3a;
 }
 
 main {
