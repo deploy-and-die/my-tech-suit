@@ -4,7 +4,7 @@ SHELL := /bin/bash
 IMAGE ?= my-tech-suit
 COMPOSE ?= docker compose
 
-.PHONY: help install dev build start lint prisma-generate prisma-migrate docker-build docker-up docker-down docker-logs
+.PHONY: help install dev build start lint prisma-generate prisma-migrate docker-build docker-up docker-dev docker-down docker-logs
 
 help:
 	@echo "Available targets:"
@@ -17,6 +17,7 @@ help:
 	@echo "  prisma-migrate   Apply Prisma migrations in dev"
 	@echo "  docker-build     Build the production image"
 	@echo "  docker-up        Start app + Postgres via docker compose"
+	@echo "  docker-dev       Start dev stack with live reload (compose + override)"
 	@echo "  docker-down      Stop the compose stack"
 	@echo "  docker-logs      Tail logs from the compose stack"
 
@@ -48,6 +49,9 @@ docker-build:
 
 docker-up:
 	$(COMPOSE) up --build
+
+docker-dev:
+	$(COMPOSE) -f docker-compose.yml -f docker-compose.dev.yml up --build
 
 docker-down:
 	$(COMPOSE) down
