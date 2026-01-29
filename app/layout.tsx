@@ -19,8 +19,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-peach">
         <div className="flex min-h-screen flex-col lg:flex-row">
           <Sidebar />
-          <main className="flex-1 border-l-0 border-white/60 bg-white/80 backdrop-blur lg:border-l">
-            {children}
+          <main className="flex flex-1 justify-center border-l-0 border-white/60 bg-white/80 px-4 py-8 transition-all duration-300 backdrop-blur lg:border-l lg:px-10">
+            <div className="w-full max-w-5xl space-y-8 lg:min-h-[calc(100vh-4rem)]">
+              {children}
+            </div>
           </main>
         </div>
       </body>

@@ -7,19 +7,19 @@ import Link from "next/link";
 const AUTO_HIDE_MS = 10_000;
 
 const primaryLinks = [
-  { href: "/", label: "Home" },
-  { href: "/work", label: "Work" },
-  { href: "/case-studies", label: "Case Studies" },
-  { href: "/side-projects", label: "Side Projects" },
-  { href: "/blog", label: "Tech Blogs" },
-  { href: "/contact", label: "Contact" },
-  { href: "/forums", label: "Forums" },
+  { href: "/", label: "Home", icon: <HomeIcon /> },
+  { href: "/work", label: "Work", icon: <WorkIcon /> },
+  { href: "/case-studies", label: "Case Studies", icon: <CaseIcon /> },
+  { href: "/side-projects", label: "Side Projects", icon: <SparkIcon /> },
+  { href: "/blog", label: "Tech Blogs", icon: <BookIcon /> },
+  { href: "/contact", label: "Contact", icon: <MailIcon /> },
+  { href: "/forums", label: "Forums", icon: <ChatBubbleIcon /> },
 ];
 
 const secondaryLinks = [
-  { href: "/dont-look-here/fun-stuff", label: "Fun Stuff" },
-  { href: "/dont-look-here/my-experiments", label: "My Experiments" },
-  { href: "/dont-look-here/chaos-lab", label: "Chaos Lab" },
+  { href: "/dont-look-here/fun-stuff", label: "Fun Stuff", icon: <StarIcon /> },
+  { href: "/dont-look-here/my-experiments", label: "My Experiments", icon: <LabIcon /> },
+  { href: "/dont-look-here/chaos-lab", label: "Chaos Lab", icon: <ChaosIcon /> },
 ];
 
 export function Sidebar() {
@@ -112,7 +112,9 @@ export function Sidebar() {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="h-2 w-2 rounded-full bg-accent/70" aria-hidden="true" />
+                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/80 text-accent">
+                          {link.icon}
+                        </span>
                         {link.label}
                       </Link>
                     </li>
@@ -131,7 +133,9 @@ export function Sidebar() {
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="h-2 w-2 rounded-full bg-accentLight/70" aria-hidden="true" />
+                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/60 text-accentLight">
+                          {link.icon}
+                        </span>
                         {link.label}
                       </Link>
                     </li>
@@ -216,14 +220,16 @@ export function Sidebar() {
               </p>
               <ul className="space-y-4 text-lg font-semibold">
                 {primaryLinks.map((link) => (
-                <li key={link.href}>
-                  <Link className="flex items-center gap-3 text-ink/80 hover:text-accent" href={link.href}>
-                    <span className="h-2 w-2 rounded-full bg-accent/70" aria-hidden="true" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                  <li key={link.href}>
+                    <Link className="flex items-center gap-3 text-ink/80 hover:text-accent" href={link.href}>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/80 text-accent">
+                        {link.icon}
+                      </span>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
           </nav>
             <nav className="space-y-3">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
@@ -233,7 +239,9 @@ export function Sidebar() {
                 {secondaryLinks.map((link) => (
                   <li key={link.href}>
                     <Link className="flex items-center gap-3 hover:text-accentLight" href={link.href}>
-                      <span className="h-2 w-2 rounded-full bg-accentLight/70" aria-hidden="true" />
+                      <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/70 text-accentLight">
+                        {link.icon}
+                      </span>
                       {link.label}
                     </Link>
                   </li>
@@ -244,5 +252,91 @@ export function Sidebar() {
         </div>
       </aside>
     </>
+  );
+}
+
+function HomeIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M4 11l8-6 8 6v8a2 2 0 01-2 2h-4v-5H10v5H6a2 2 0 01-2-2z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function WorkIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M4 7h16a1 1 0 011 1v11H3V8a1 1 0 011-1z" />
+      <path d="M9 7V5h6v2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function CaseIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <rect height="12" width="16" x="4" y="6" rx="2" />
+      <path d="M4 11h16" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function SparkIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M4 5h7a2 2 0 012 2v12H6a2 2 0 01-2-2z" />
+      <path d="M20 5h-7a2 2 0 00-2 2v12h7a2 2 0 002-2z" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <rect height="14" width="18" x="3" y="5" rx="2" />
+      <path d="M3 8l9 5 9-5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChatBubbleIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M5 5h14a2 2 0 012 2v7a2 2 0 01-2 2H9l-4 4V7a2 2 0 012-2z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function StarIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M12 3l2.6 5.6L21 10.5l-4.5 4L17.5 21 12 18l-5.5 3 1-6.5L3 10.5l6.4-1.9z" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function LabIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M9 3v5l-5 9a2 2 0 001.7 3h12.6a2 2 0 001.7-3l-5-9V3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function ChaosIcon() {
+  return (
+    <svg aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth={1.7} viewBox="0 0 24 24">
+      <path d="M4 12h16" strokeLinecap="round" />
+      <path d="M12 4v16" strokeLinecap="round" />
+      <path d="M5 5l14 14" strokeLinecap="round" />
+    </svg>
   );
 }
