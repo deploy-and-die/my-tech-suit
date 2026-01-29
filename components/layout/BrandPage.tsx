@@ -74,14 +74,33 @@ export function BrandPage() {
             className="space-y-6"
           >
             <p className="text-sm uppercase tracking-[0.2em] text-slate-500">
-              Brand · Software Engineering
+              Software Engineering
             </p>
             <h1 className="text-4xl font-semibold text-ink sm:text-5xl">
               Hello, I’m Zaid. I build software that turns ideas into impact.
             </h1>
-            <p className="text-lg text-slate-600">
+            <motion.p
+              className="text-lg text-slate-600"
+              animate={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      y: [0, -6, 0],
+                      rotate: [0, -1, 0],
+                    }
+              }
+              transition={
+                prefersReducedMotion
+                  ? undefined
+                  : {
+                      duration: 3.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }
+              }
+            >
               “I help ideas, products, and systems explode in impact — responsibly.”
-            </p>
+            </motion.p>
             <p className="text-base text-slate-500">
               Clear thinking. Real-world systems. Thoughtful execution.
             </p>
@@ -92,6 +111,21 @@ export function BrandPage() {
               <button className="rounded-full border border-white/80 bg-white/80 px-6 py-3 text-sm font-semibold text-ink">
                 View Work
               </button>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-3">
+              {[
+                { title: "Availability", detail: "Now booking Q2" },
+                { title: "Focus", detail: "Products & platforms" },
+                { title: "Response", detail: "Within 24 hours" },
+              ].map((item) => (
+                <div
+                  className="rounded-2xl border border-white/80 bg-white/90 p-4 text-sm text-slate-600 shadow-soft"
+                  key={item.title}
+                >
+                  <p className="text-xs uppercase tracking-[0.2em] text-slate-400">{item.title}</p>
+                  <p className="mt-2 font-semibold text-ink">{item.detail}</p>
+                </div>
+              ))}
             </div>
           </motion.div>
           <div className="relative grid gap-4 sm:grid-cols-2">

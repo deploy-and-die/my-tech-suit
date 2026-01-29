@@ -43,7 +43,6 @@ export function Sidebar() {
       <header className="flex w-full items-center justify-between border-b border-white/70 bg-white/80 px-6 py-4 text-ink lg:hidden">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-slate-500">OriginStory</p>
-          <p className="text-sm font-semibold">Brand</p>
         </div>
         <button
           className="rounded-full border border-white/70 bg-lavender px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink"
@@ -70,11 +69,6 @@ export function Sidebar() {
               </button>
             </div>
             <div className="mt-8 space-y-8">
-              <div>
-                <p className="mt-3 text-lg font-semibold text-ink">
-                  I help ideas, products, and systems explode in impact — responsibly.
-                </p>
-              </div>
               <nav className="space-y-3">
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                   Primary
@@ -135,9 +129,6 @@ export function Sidebar() {
                 {isPinned ? "Pinned" : "Auto-hide"}
               </button>
             </div>
-            <p className="text-lg font-semibold text-ink">
-              I help ideas, products, and systems explode in impact — responsibly.
-            </p>
           </div>
           <nav className="space-y-3">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
