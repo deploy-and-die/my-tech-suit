@@ -1,4 +1,4 @@
-# OriginStory / NextForm
+# Engineering - From Idea To Impact
 
 Opinionated portfolio + community platform built with Next.js App Router, Auth.js, and Prisma.
 
@@ -19,3 +19,4 @@ GITHUB_CLIENT_SECRET=
 GOOGLE_CLIENT_ID=
 GOOGLE_CLIENT_SECRET=
 ```
+
