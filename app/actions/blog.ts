@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageOwnContent } from "@/lib/permissions";
+import { canManageOwnContent, isAdminUser } from "@/lib/permissions";
 
 const BLOG_PATH = "/blog";
 
@@ -18,8 +18,8 @@ function assertAuthenticated(userId?: string) {
   }
 }
 
-function assertAdmin(role?: string) {
-  if (role !== "ADMIN") {
+function assertAdmin(user?: { role?: string; email?: string | null }) {
+  if (!isAdminUser(user)) {
     throw new Error("Not authorized.");
   }
 }
@@ -59,7 +59,7 @@ export async function updateBlogPost(postId: string, formData: FormData) {
     throw new Error("Post not found.");
   }
 
-  const isAdmin = session.user.role === "ADMIN";
+  const isAdmin = isAdminUser(session.user);
   const canEdit =
     isAdmin || (post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId));
 
@@ -119,7 +119,7 @@ export async function requestBlogReview(postId: string) {
 export async function publishBlogPost(postId: string) {
   const session = await auth();
   assertAuthenticated(session?.user?.id);
-  assertAdmin(session?.user?.role);
+  assertAdmin(session?.user);
 
   const post = await prisma.blogPost.findUnique({
     where: { id: postId },
@@ -127,6 +127,10 @@ export async function publishBlogPost(postId: string) {
 
   if (!post) {
     throw new Error("Post not found.");
+  }
+
+  if (!post.reviewRequestedAt) {
+    throw new Error("Review not requested.");
   }
 
   const updated = await prisma.blogPost.update({
@@ -152,7 +156,7 @@ export async function archiveBlogPost(postId: string) {
     throw new Error("Post not found.");
   }
 
-  const isAdmin = session.user.role === "ADMIN";
+  const isAdmin = isAdminUser(session.user);
   const canArchive =
     isAdmin || (post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId));
 

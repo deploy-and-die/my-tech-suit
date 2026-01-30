@@ -7,6 +7,7 @@ import {
   updateBlogPost,
 } from "@/app/actions/blog";
 import { auth } from "@/lib/auth";
+import { isAdminUser } from "@/lib/permissions";
 import { prisma } from "@/lib/prisma";
 
 const statusLabels = {
@@ -25,7 +26,7 @@ function formatDate(value: Date) {
 
 export default async function BlogPage() {
   const session = await auth();
-  const isAdmin = session?.user?.role === "ADMIN";
+  const isAdmin = isAdminUser(session?.user);
   const userId = session?.user?.id;
 
   const publishedPosts = await prisma.blogPost.findMany({
@@ -266,7 +267,7 @@ export default async function BlogPage() {
           ) : (
             <div className="space-y-4">
               {adminPosts.map((post) => {
-                const canPublish = post.status === "DRAFT";
+                const canPublish = post.status === "DRAFT" && post.reviewRequestedAt;
                 const canArchive = post.status !== "ARCHIVED";
                 return (
                   <div
@@ -282,6 +283,11 @@ export default async function BlogPage() {
                         <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
                           Updated {formatDate(post.updatedAt)}
                         </p>
+                        <p className="mt-1 text-xs text-slate-500">
+                          {post.reviewRequestedAt
+                            ? `Review requested ${formatDate(post.reviewRequestedAt)}`
+                            : "Waiting for review request."}
+                        </p>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold text-slate-500">
@@ -292,11 +298,11 @@ export default async function BlogPage() {
                             <form action={publishBlogPost.bind(null, post.id)}>
                               <button
                                 className="rounded-full border border-slate-200 px-2 py-1 text-xs text-slate-400 transition hover:border-accentDark hover:text-ink"
-                                title="Publish"
+                                title="Approve and publish"
                                 type="submit"
                               >
                                 ⬆︎
-                                <span className="sr-only">Publish</span>
+                                <span className="sr-only">Approve and publish</span>
                               </button>
                             </form>
                           ) : null}
