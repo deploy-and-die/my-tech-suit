@@ -18,6 +18,12 @@ enum ResourceType {
   CASE_STUDY
 }
 
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
 model User {
   id        String   @id @default(cuid())
   name      String?
@@ -29,6 +35,22 @@ model User {
   comments      Comment[]
   forumPosts    ForumPost[]
   forumComments ForumComment[]
+  blogPosts     BlogPost[]
+}
+
+model BlogPost {
+  id                String     @id @default(cuid())
+  title             String
+  content           String
+  authorId          String
+  author            User       @relation(fields: [authorId], references: [id])
+  status            BlogStatus @default(DRAFT)
+  reviewRequestedAt DateTime?
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  @@index([status])
+  @@index([authorId])
 }
 
 model Comment {
