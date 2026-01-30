@@ -7,3 +7,7 @@ export function canModerate(role: Role) {
 export function canManageOwnContent(userId: string, ownerId: string) {
   return userId === ownerId;
 }
+
+export function isAdminUser(user?: { role?: Role; email?: string | null }) {
+  return user?.role === "ADMIN" || user?.email?.toLowerCase() === "zaidali753@gmail.com";
+}
