@@ -1,36 +1,37 @@
 "use server";
 
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageOwnContent, canModerate, type Role } from "@/lib/permissions";
+import { canManageOwnContent, canModerate } from "@/lib/permissions";
 
 export type ResourceType = "BLOG" | "CASE_STUDY";
 
-export interface CommentActor {
-  id: string;
-  role: Role;
-}
-
 export async function createComment(
-  actor: CommentActor,
   resourceId: string,
   resourceType: ResourceType,
   content: string
 ) {
-  if (!actor.id) {
+  const session = await auth();
+  if (!session?.user?.id) {
     throw new Error("Authentication required.");
   }
 
   return prisma.comment.create({
     data: {
       content,
-      userId: actor.id,
+      userId: session.user.id,
       resourceId,
       resourceType,
     },
   });
 }
 
-export async function deleteComment(actor: CommentActor, commentId: string) {
+export async function deleteComment(commentId: string) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Authentication required.");
+  }
+
   const comment = await prisma.comment.findUnique({
     where: { id: commentId },
   });
@@ -39,7 +40,8 @@ export async function deleteComment(actor: CommentActor, commentId: string) {
     throw new Error("Comment not found.");
   }
 
-  const canDelete = canManageOwnContent(actor.id, comment.userId) || canModerate(actor.role);
+  const canDelete =
+    canManageOwnContent(session.user.id, comment.userId) || canModerate(session.user.role);
 
   if (!canDelete) {
     throw new Error("Not authorized.");

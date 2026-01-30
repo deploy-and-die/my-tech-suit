@@ -1,20 +1,16 @@
 "use server";
 
+import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageOwnContent, canModerate, type Role } from "@/lib/permissions";
-
-export interface ForumActor {
-  id: string;
-  role: Role;
-}
+import { canManageOwnContent, canModerate } from "@/lib/permissions";
 
 export async function createForumPost(
-  actor: ForumActor,
   title: string,
   content: string,
   categoryId: string
 ) {
-  if (!actor.id) {
+  const session = await auth();
+  if (!session?.user?.id) {
     throw new Error("Authentication required.");
   }
 
@@ -23,17 +19,17 @@ export async function createForumPost(
       title,
       content,
       categoryId,
-      userId: actor.id,
+      userId: session.user.id,
     },
   });
 }
 
 export async function createForumComment(
-  actor: ForumActor,
   postId: string,
   content: string
 ) {
-  if (!actor.id) {
+  const session = await auth();
+  if (!session?.user?.id) {
     throw new Error("Authentication required.");
   }
 
@@ -41,12 +37,17 @@ export async function createForumComment(
     data: {
       content,
       postId,
-      userId: actor.id,
+      userId: session.user.id,
     },
   });
 }
 
-export async function deleteForumPost(actor: ForumActor, postId: string) {
+export async function deleteForumPost(postId: string) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Authentication required.");
+  }
+
   const post = await prisma.forumPost.findUnique({
     where: { id: postId },
   });
@@ -55,7 +56,8 @@ export async function deleteForumPost(actor: ForumActor, postId: string) {
     throw new Error("Post not found.");
   }
 
-  const canDelete = canManageOwnContent(actor.id, post.userId) || canModerate(actor.role);
+  const canDelete =
+    canManageOwnContent(session.user.id, post.userId) || canModerate(session.user.role);
 
   if (!canDelete) {
     throw new Error("Not authorized.");
@@ -70,7 +72,12 @@ export async function deleteForumPost(actor: ForumActor, postId: string) {
   });
 }
 
-export async function deleteForumComment(actor: ForumActor, commentId: string) {
+export async function deleteForumComment(commentId: string) {
+  const session = await auth();
+  if (!session?.user?.id) {
+    throw new Error("Authentication required.");
+  }
+
   const comment = await prisma.forumComment.findUnique({
     where: { id: commentId },
   });
@@ -79,7 +86,8 @@ export async function deleteForumComment(actor: ForumActor, commentId: string) {
     throw new Error("Comment not found.");
   }
 
-  const canDelete = canManageOwnContent(actor.id, comment.userId) || canModerate(actor.role);
+  const canDelete =
+    canManageOwnContent(session.user.id, comment.userId) || canModerate(session.user.role);
 
   if (!canDelete) {
     throw new Error("Not authorized.");

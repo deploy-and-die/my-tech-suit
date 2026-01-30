@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { AuthPrompt } from "@/components/auth/AuthPrompt";
 
 const feedbackTypes = [
   "Product feedback",
@@ -27,6 +28,10 @@ export default function ForumsPage() {
       <p className="max-w-2xl text-slate-600">
         Structured discussion spaces with categories, threads, and one-level replies.
       </p>
+      <AuthPrompt
+        actionLabel="Start a discussion"
+        context="Launch a new thread when you want to gather opinions or share a proposal."
+      />
       <div className="rounded-lg border border-slate-100 bg-slate-50 p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
           Categories
@@ -172,6 +177,10 @@ export default function ForumsPage() {
           </div>
         </div>
       </div>
+      <AuthPrompt
+        actionLabel="Reply"
+        context="Join an existing thread with a calm, constructive response."
+      />
     </section>
   );
 }
