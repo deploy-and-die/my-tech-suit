@@ -165,7 +165,7 @@ export function BrandPage() {
                         duration: 4,
                         repeat: Infinity,
                         repeatDelay: 0.6,
-                        delay: 1.5 + index * 0.7,
+                        delay: 1 + index * 0.7,
                         ease: "easeInOut",
                       }
                 }
