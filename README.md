@@ -38,6 +38,22 @@ This uses the default Postgres connection string `postgresql://mytech:mytech@pos
 
 The application container automatically runs `prisma migrate deploy` on startup so schema changes are applied whenever it boots. Set `SKIP_DB_MIGRATE=true` if you prefer to manage migrations yourself.
 
+### Using the Docker database from the host
+
+When you run Next.js directly on your machine but still want to reuse the Postgres
+container, expose the database and run migrations from the host. Migrations live in
+`prisma/migrations`—commit them so every environment can apply the same schema.
+
+1. Start the database: `docker compose up -d postgres` (port `5432` is published to `localhost`).
+2. Use `postgresql://mytech:mytech@localhost:5432/mytech?schema=public` as `DATABASE_URL` in `.env.local`.
+3. Run `npm run db:ready` whenever you start the stack. This waits for PostgreSQL to accept connections and then executes `prisma migrate deploy` against the exposed port.
+4. Start your dev server with `npm run dev`.
+
+You can automate steps 1–4 with `make up`, which starts the database, waits for it via `npm run db:ready`, and finally runs `npm run dev`. Override the defaults with `DB_URL=...` or `NEXTPORT=4000 make up` if needed.
+
+This flow keeps Prisma migrations in sync even though the API and database are
+running in different environments.
+
 ### Hot-reload while developing in Docker
 
 Use the dev override file to mount your working tree into the container and run `next dev`. Code changes are recompiled automatically without restarting Compose:

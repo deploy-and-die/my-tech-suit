@@ -3,8 +3,10 @@ SHELL := /bin/bash
 
 IMAGE ?= my-tech-suit
 COMPOSE ?= docker compose
+DB_URL ?= postgresql://mytech:mytech@localhost:5432/mytech?schema=public
+NEXTPORT ?= 3000
 
-.PHONY: help install dev build start lint prisma-generate prisma-migrate docker-build docker-up docker-dev docker-down docker-logs
+.PHONY: help install dev build start lint prisma-generate prisma-migrate docker-build docker-up docker-dev docker-down docker-logs up
 
 help:
 	@echo "Available targets:"
@@ -58,3 +60,8 @@ docker-down:
 
 docker-logs:
 	$(COMPOSE) logs -f
+
+up:
+	$(COMPOSE) up -d postgres
+	DATABASE_URL=$(DB_URL) npm run db:ready
+	DATABASE_URL=$(DB_URL) npm run dev -- --port $(NEXTPORT)
