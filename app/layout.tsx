@@ -6,7 +6,7 @@ import { Sidebar } from "@/components/navigation/Sidebar";
 import { Providers } from "@/app/providers";
 
 export const metadata: Metadata = {
-  title: "OriginStory",
+  title: "Explode With Me",
   description: "A calm, auditable portfolio and community space.",
 };
 
