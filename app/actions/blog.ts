@@ -174,3 +174,56 @@ export async function archiveBlogPost(postId: string) {
   revalidatePath(BLOG_PATH);
   return updated;
 }
+
+export async function unarchiveBlogPost(postId: string) {
+  const session = await auth();
+  assertAuthenticated(session?.user?.id);
+  assertAdmin(session?.user);
+
+  const post = await prisma.blogPost.findUnique({
+    where: { id: postId },
+  });
+
+  if (!post) {
+    throw new Error("Post not found.");
+  }
+
+  if (post.status !== "ARCHIVED") {
+    throw new Error("Only archived posts can be restored.");
+  }
+
+  const updated = await prisma.blogPost.update({
+    where: { id: postId },
+    data: {
+      status: "DRAFT",
+      reviewRequestedAt: null,
+    },
+  });
+
+  revalidatePath(BLOG_PATH);
+  return updated;
+}
+
+export async function deleteBlogPost(postId: string) {
+  const session = await auth();
+  assertAuthenticated(session?.user?.id);
+
+  const post = await prisma.blogPost.findUnique({
+    where: { id: postId },
+  });
+
+  if (!post) {
+    throw new Error("Post not found.");
+  }
+
+  const isAdmin = isAdminUser(session.user);
+  const isAuthorDraft =
+    post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId);
+
+  if (!isAdmin && !isAuthorDraft) {
+    throw new Error("Not authorized to delete this post.");
+  }
+
+  await prisma.blogPost.delete({ where: { id: postId } });
+  revalidatePath(BLOG_PATH);
+}
