@@ -8,7 +8,7 @@ const AUTO_HIDE_MS = 10_000;
 
 const primaryLinks = [
   { href: "/", label: "Home", icon: <HomeIcon /> },
-  { href: "/work", label: "Work", icon: <WorkIcon /> },
+  { href: "/work", label: "Impact Studio", icon: <WorkIcon /> },
   { href: "/case-studies", label: "Case Studies", icon: <CaseIcon /> },
   { href: "/side-projects", label: "Side Projects", icon: <SparkIcon /> },
   { href: "/blog", label: "Tech Blogs", icon: <BookIcon /> },
@@ -192,7 +192,7 @@ export function Sidebar() {
                 }`}
                 aria-hidden={isExpanded}
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-white">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/70 bg-white/90 text-ink shadow-sm">
                   <svg
                     className="h-4 w-4"
                     fill="none"

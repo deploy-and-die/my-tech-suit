@@ -12,7 +12,7 @@ const socialCards: SocialCard[] = [
   {
     title: "Professional updates",
     description:
-      "Work, career milestones, and conversations around software, systems, and growth.",
+      "Impact Studio launches, career milestones, and conversations around software, systems, and growth.",
     href: "https://www.linkedin.com/in/zaid-ali-b409501a4/",
     icon: <LinkedInIcon />,
     platform: "LinkedIn",

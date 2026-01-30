@@ -17,8 +17,8 @@ const aboutCards = [
     body: "I’m a software engineer who cares about turning ideas into systems that actually hold up in the real world.\n\nI focus on clarity, tradeoffs, and building things that survive real usage—not just demos.",
   },
   {
-    title: "How I Work",
-    body: "I prefer thoughtful decisions over rushed code, and simple systems over clever ones.\n\nI believe good engineering is calm, intentional, and honest about constraints.",
+    title: "Inside the Impact Studio",
+    body: "Deliberate systems, measured bets, and space to think before building.\n\nIt’s where ideas become reliable software without the chaos.",
   },
   {
     title: "Why This Site",
@@ -138,7 +138,7 @@ export function BrandPage() {
                 className="rounded-full border border-accent/60 px-6 py-3 text-sm font-semibold text-accent transition hover:border-accentDark hover:text-accentDark"
                 href="/work"
               >
-                View Work
+                Explore Impact Studio
               </Link>
             </div>
           </motion.div>
@@ -165,7 +165,7 @@ export function BrandPage() {
                         duration: 4,
                         repeat: Infinity,
                         repeatDelay: 0.6,
-                        delay: 1 + index * 0.7,
+                        delay: index * 0.8,
                         ease: "easeInOut",
                       }
                 }

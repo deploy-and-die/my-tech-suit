@@ -62,7 +62,7 @@ const heroStats: HeroStat[] = [
   {
     id: "ownership",
     label: "APIs, Integrations, Reliability",
-    valueText: "End-to-End Ownership",
+    valueText: "End to End Ownership",
   },
 ];
 
@@ -73,13 +73,13 @@ const roles: Role[] = [
     company: "Karbon Business",
     duration: "Oct 2024 – Present",
     domain: "AI Accounting, Fintech",
-    headline: "Building AI-driven accounting systems at scale",
+    headline: "Building AI driven accounting systems at scale",
     impacts: [
       "Led FinBox integration into Karbon’s AI Accountant to ingest complex bank statements (PDF, Excel, images).",
-      "Designed core APIs for ATIS, enabling real-time bi-directional sync with Tally.",
-      "Introduced idempotency, retries, and reconciliation jobs to guarantee exactly-once updates.",
-      "Built and owned the Tally AIA Connector (Windows app) for near real-time accounting flows.",
-      "Delivered the prepaid cards system end-to-end, reliably handling ₹95L monthly GTV.",
+      "Designed core APIs for ATIS, enabling real time bi directional sync with Tally.",
+      "Introduced idempotency, retries, and reconciliation jobs to guarantee exactly once updates.",
+      "Built and owned the Tally AIA Connector (Windows app) for near real time accounting flows.",
+      "Delivered the prepaid cards system end to end, reliably handling ₹95L monthly GTV.",
     ],
   },
   {
@@ -105,7 +105,7 @@ const roles: Role[] = [
     domain: "Fintech Infrastructure",
     headline: "From intern to systems thinker",
     impacts: [
-      "Designed a real-time logging pipeline using Kafka.",
+      "Designed a real time logging pipeline using Kafka.",
       "Built a Kibana-style analytics dashboard for live insights.",
       "Worked across data, backend, and presentation layers.",
       "Built early instincts for system design tradeoffs and production constraints.",
@@ -128,13 +128,13 @@ const highlights: Highlight[] = [
   },
   {
     id: "sync",
-    label: "Real-time sync",
+    label: "Real time sync",
     value: "Accounting systems (Tally)",
-    detail: "Bi-directional updates with reconciliation safety nets.",
+    detail: "Bi directional updates with reconciliation safety nets.",
   },
   {
     id: "ownership",
-    label: "End-to-end ownership",
+    label: "End to end ownership",
     value: "APIs → connectors → reconciliation",
     detail: "Full lifecycle responsibility.",
   },
@@ -150,13 +150,13 @@ const skillClusters: SkillCluster[] = [
   {
     id: "backend",
     title: "Backend & APIs",
-    skills: "FastAPI, REST APIs, idempotency, retries, reconciliation",
+    skills: "FastAPI, REST APIs, Idempotency, Retries, Reconciliation",
     usage: "Used across fintech and AI accounting systems.",
   },
   {
     id: "systems",
     title: "Systems & Reliability",
-    skills: "Distributed systems, microservices, event-driven workflows",
+    skills: "Distributed Systems, Microservices, Event Driven Workflows",
     usage: "Applied in recon, ETL pipelines, and accounting sync.",
   },
   {
@@ -274,7 +274,7 @@ export default function WorkPage() {
   return (
     <section className="space-y-12">
       <header className="space-y-4">
-        <h1 className="text-3xl font-semibold text-slate-900">Work</h1>
+        <h1 className="text-3xl font-semibold text-slate-900">Impact Studio</h1>
         <p className="max-w-2xl text-slate-600">
           I’ve spent the last few years building and operating backend systems in fintech and AI
           products — from early design decisions to production reliability.
@@ -287,7 +287,7 @@ export default function WorkPage() {
 
       <section className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-semibold text-slate-900">Work at a glance</h2>
+          <h2 className="text-xl font-semibold text-slate-900">Impact Studio at a glance</h2>
           <span className="text-sm uppercase tracking-[0.25em] text-slate-400">Live metrics</span>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
