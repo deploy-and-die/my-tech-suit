@@ -1,3 +1,5 @@
+import { AuthPrompt } from "@/components/auth/AuthPrompt";
+
 export default function BlogPage() {
   return (
     <section className="space-y-6">
@@ -6,6 +8,10 @@ export default function BlogPage() {
         Technical notes, design decisions, and lessons learned. Comments require
         authentication.
       </p>
+      <AuthPrompt
+        actionLabel="Comment"
+        context="Drop a thoughtful response when you’re ready. Browsing stays open to everyone."
+      />
     </section>
   );
 }
