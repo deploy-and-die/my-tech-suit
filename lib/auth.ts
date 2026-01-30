@@ -27,6 +27,7 @@ export const authConfig = {
     async jwt({ token, user, profile }) {
       const email = user?.email ?? token.email ?? profile?.email;
       if (!email) return token;
+      const isAdmin = email.toLowerCase() === "zaidali753@gmail.com";
 
       const name = user?.name ?? token.name ?? profile?.name ?? null;
       const image =
@@ -40,11 +41,13 @@ export const authConfig = {
         update: {
           name,
           image,
+          ...(isAdmin ? { role: "ADMIN" } : {}),
         },
         create: {
           email,
           name,
           image,
+          role: isAdmin ? "ADMIN" : "USER",
         },
       });
 
