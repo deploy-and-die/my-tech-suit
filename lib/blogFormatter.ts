@@ -1,4 +1,4 @@
-const OPENAI_MODEL = process.env.OPENAI_BLOG_MODEL ?? "gpt-4o-mini";
+const OPENAI_MODEL = process.env.NEXT_PUBLIC_OPENAI_BLOG_MODEL ?? process.env.OPENAI_BLOG_MODEL ?? "gpt-4o-mini";
 
 const BLOG_PROMPT = `You are a meticulous editor and storyteller. Take the provided blog content and:
 - Remove stray symbols, repeated punctuation, and obvious formatting noise.
@@ -8,7 +8,7 @@ const BLOG_PROMPT = `You are a meticulous editor and storyteller. Take the provi
 - Return beautiful, reader-ready Markdown only. Do not wrap with code fences.`;
 
 export async function formatBlogContent(raw: string): Promise<string> {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY ?? process.env.OPENAI_API_KEY;
   if (!apiKey || raw.trim().length === 0) {
     return raw;
   }

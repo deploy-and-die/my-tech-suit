@@ -48,6 +48,7 @@ model BlogPost {
   reviewRequestedAt DateTime?
   createdAt         DateTime   @default(now())
   updatedAt         DateTime   @updatedAt
+  imageUrl          String?
 
   @@index([status])
   @@index([authorId])

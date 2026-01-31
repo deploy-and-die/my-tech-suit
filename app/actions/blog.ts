@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { canManageOwnContent, isAdminUser } from "@/lib/permissions";
@@ -35,16 +36,20 @@ export async function createBlogDraft(formData: FormData) {
     throw new Error("Title and content are required.");
   }
 
+  const isAdmin = isAdminUser(session.user);
+
   const post = await prisma.blogPost.create({
     data: {
       title,
       content,
       authorId: session.user.id,
+      status: isAdmin ? "PUBLISHED" : "DRAFT",
+      reviewRequestedAt: isAdmin ? null : new Date(),
     },
   });
 
   revalidatePath(BLOG_PATH);
-  return post;
+  return { id: post.id, status: isAdmin ? "published" : "review" } as const;
 }
 
 export async function updateBlogPost(postId: string, formData: FormData) {
@@ -141,7 +146,7 @@ export async function publishBlogPost(postId: string) {
   });
 
   revalidatePath(BLOG_PATH);
-  return updated;
+  redirect("/blog?notice=published");
 }
 
 export async function archiveBlogPost(postId: string) {
