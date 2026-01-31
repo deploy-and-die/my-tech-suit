@@ -173,7 +173,7 @@ const skillClusters: SkillCluster[] = [
   },
 ];
 
-const CTA_TEXT = "View Case Studies →";
+const CTA_TEXT = "Case Studies (coming soon)";
 
 function useCountUp(target: number, duration = 1600) {
   const [value, setValue] = useState(0);
@@ -277,7 +277,7 @@ export default function WorkPage() {
         <h1 className="text-3xl font-semibold text-slate-900">Impact Studio</h1>
         <p className="max-w-2xl text-slate-600">
           I’ve spent the last few years building and operating backend systems in fintech and AI
-          products — from early design decisions to production reliability.
+          products from early design decisions to production reliability.
         </p>
         <p className="max-w-2xl text-slate-600">
           My work focuses on systems that need to be correct, scalable, and boring in production,
@@ -374,8 +374,11 @@ export default function WorkPage() {
             Want to see how these systems were actually built?
           </p>
           <Link
-            className="inline-flex items-center justify-center rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-slate-800"
+            aria-disabled
+            className="inline-flex cursor-not-allowed items-center justify-center rounded-full bg-slate-400/70 px-5 py-2 text-sm font-semibold text-white"
             href="/case-studies"
+            onClick={(event) => event.preventDefault()}
+            tabIndex={-1}
           >
             {CTA_TEXT}
           </Link>

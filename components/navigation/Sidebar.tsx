@@ -9,8 +9,9 @@ const AUTO_HIDE_MS = 10_000;
 const primaryLinks = [
   { href: "/", label: "Home", icon: <HomeIcon /> },
   { href: "/work", label: "Impact Studio", icon: <WorkIcon /> },
-  { href: "/case-studies", label: "Case Studies", icon: <CaseIcon /> },
-  { href: "/side-projects", label: "Side Projects", icon: <SparkIcon /> },
+  // Temporarily commenting out to hide until ready to relaunch.
+  // { href: "/case-studies", label: "Case Studies", icon: <CaseIcon /> },
+  // { href: "/side-projects", label: "Side Projects", icon: <SparkIcon /> },
   { href: "/blog", label: "Tech Blogs", icon: <BookIcon /> },
   { href: "/contact", label: "Contact", icon: <MailIcon /> },
   { href: "/forums", label: "Forums", icon: <ChatBubbleIcon /> },
