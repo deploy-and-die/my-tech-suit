@@ -23,9 +23,9 @@ const statusLabels = {
   DRAFT: "Draft",
   PUBLISHED: "Published",
   ARCHIVED: "Archived",
-} as const;
+};
 
-function formatDate(value: Date) {
+function formatDate(value) {
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
@@ -33,17 +33,13 @@ function formatDate(value: Date) {
   }).format(value);
 }
 
-function buildExcerpt(content: string, maxLength = 180) {
+function buildExcerpt(content, maxLength = 180) {
   const normalized = content.replace(/\n+/g, " ").replace(/\s+/g, " ").trim();
   if (normalized.length <= maxLength) return normalized;
   return `${normalized.slice(0, maxLength)}…`;
 }
 
-export default async function BlogPage({
-  searchParams,
-}: {
-  searchParams?: { notice?: string };
-}) {
+export default async function BlogPage({ searchParams }) {
   const session = await auth();
   const isAdmin = isAdminUser(session?.user);
   const userId = session?.user?.id;
@@ -55,15 +51,7 @@ export default async function BlogPage({
     orderBy: { createdAt: "desc" },
   });
 
-  const orderedPublishedPosts = [] as {
-    id: string;
-    title: string;
-    excerpt: string;
-    author: string;
-    createdAt: Date;
-    imageUrl: string;
-    isOwn: boolean;
-  }[];
+  const orderedPublishedPosts = [];
 
   const sortedPublished = [...publishedPosts].sort((a, b) => {
     const aOwn = a.authorId === userId;
@@ -249,18 +237,18 @@ export default async function BlogPage({
                       triggerLabel="Open editor"
                     >
                       <form
-                        action={async (formData: FormData) => {
+                        action={async (formData) => {
                           "use server";
                           await updateBlogPost(post.id, formData);
                         }}
                         className="space-y-3"
                         method="post"
                       >
-                          <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                            Title
-                            <input
-                              className="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-700"
-                              defaultValue={post.title}
+                        <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                          Title
+                          <input
+                            className="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-700"
+                            defaultValue={post.title}
                             name="title"
                             required
                             type="text"
@@ -275,18 +263,18 @@ export default async function BlogPage({
                             required
                           />
                         </label>
-                          <button
-                            className="rounded-full border border-ink px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-white"
-                            type="submit"
-                          >
-                            Save updates
-                          </button>
-                        </form>
+                        <button
+                          className="rounded-full border border-ink px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-white"
+                          type="submit"
+                        >
+                          Save updates
+                        </button>
+                      </form>
                     </EditConsoleModal>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {!post.reviewRequestedAt ? (
                         <form
-                          action={async (_formData: FormData) => {
+                          action={async (_formData) => {
                             "use server";
                             await requestBlogReview(post.id);
                           }}
@@ -301,7 +289,7 @@ export default async function BlogPage({
                         </form>
                       ) : null}
                       <form
-                        action={async (_formData: FormData) => {
+                        action={async (_formData) => {
                           "use server";
                           await deleteBlogPost(post.id);
                         }}
@@ -349,112 +337,112 @@ export default async function BlogPage({
                       triggerLabel={post.title}
                     >
                       <div className="space-y-4">
-                          <ReactMarkdown className="prose prose-slate max-w-none text-sm" remarkPlugins={[remarkGfm]}>
-                            {post.formattedContent || post.rawContent}
-                          </ReactMarkdown>
-                          <div className="flex flex-wrap gap-2">
-                            {canPublish ? (
-                              <form
-                                action={async (_formData: FormData) => {
-                                  "use server";
-                                  await publishBlogPost(post.id);
-                                }}
-                                method="post"
-                              >
-                                <button
-                                  className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
-                                  type="submit"
-                                >
-                                  Approve & publish
-                                </button>
-                              </form>
-                            ) : null}
-                            {canArchive ? (
-                              <form
-                                action={async (_formData: FormData) => {
-                                  "use server";
-                                  await archiveBlogPost(post.id);
-                                }}
-                                method="post"
-                              >
-                                <button
-                                  className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-slate-400 hover:text-slate-700"
-                                  type="submit"
-                                >
-                                  Archive
-                                </button>
-                              </form>
-                            ) : (
-                              <form
-                                action={async (_formData: FormData) => {
-                                  "use server";
-                                  await unarchiveBlogPost(post.id);
-                                }}
-                                method="post"
-                              >
-                                <button
-                                  className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
-                                  type="submit"
-                                >
-                                  Restore to draft
-                                </button>
-                              </form>
-                            )}
+                        <ReactMarkdown className="prose prose-slate max-w-none text-sm" remarkPlugins={[remarkGfm]}>
+                          {post.formattedContent || post.rawContent}
+                        </ReactMarkdown>
+                        <div className="flex flex-wrap gap-2">
+                          {canPublish ? (
                             <form
-                              action={async (_formData: FormData) => {
+                              action={async (_formData) => {
                                 "use server";
-                                await deleteBlogPost(post.id);
+                                await publishBlogPost(post.id);
                               }}
                               method="post"
                             >
                               <button
-                                className="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-500 transition hover:border-red-300 hover:text-red-600"
+                                className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
                                 type="submit"
                               >
-                                Delete permanently
+                                Approve & publish
                               </button>
                             </form>
-                          </div>
-                          <details className="rounded-xl border border-slate-100 bg-slate-50 p-4">
-                            <summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                              Edit blog
-                            </summary>
+                          ) : null}
+                          {canArchive ? (
                             <form
-                              action={async (formData: FormData) => {
+                              action={async (_formData) => {
                                 "use server";
-                                await updateBlogPost(post.id, formData);
+                                await archiveBlogPost(post.id);
                               }}
-                              className="mt-4 space-y-3"
                               method="post"
                             >
-                              <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                                Title
-                                <input
-                                  className="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-700"
-                                  defaultValue={post.title}
-                                  name="title"
-                                  required
-                                  type="text"
-                                />
-                              </label>
-                              <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                                Content
-                                <textarea
-                                  className="min-h-[200px] w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 font-mono text-sm text-slate-700"
-                                  defaultValue={post.rawContent}
-                                  name="content"
-                                  required
-                                />
-                              </label>
                               <button
-                                className="rounded-full border border-ink px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-white"
+                                className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-slate-400 hover:text-slate-700"
                                 type="submit"
                               >
-                                Save updates
+                                Archive
                               </button>
                             </form>
-                          </details>
+                          ) : (
+                            <form
+                              action={async (_formData) => {
+                                "use server";
+                                await unarchiveBlogPost(post.id);
+                              }}
+                              method="post"
+                            >
+                              <button
+                                className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
+                                type="submit"
+                              >
+                                Restore to draft
+                              </button>
+                            </form>
+                          )}
+                          <form
+                            action={async (_formData) => {
+                              "use server";
+                              await deleteBlogPost(post.id);
+                            }}
+                            method="post"
+                          >
+                            <button
+                              className="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-500 transition hover:border-red-300 hover:text-red-600"
+                              type="submit"
+                            >
+                              Delete permanently
+                            </button>
+                          </form>
                         </div>
+                        <details className="rounded-xl border border-slate-100 bg-slate-50 p-4">
+                          <summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                            Edit blog
+                          </summary>
+                          <form
+                            action={async (formData) => {
+                              "use server";
+                              await updateBlogPost(post.id, formData);
+                            }}
+                            className="mt-4 space-y-3"
+                            method="post"
+                          >
+                            <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                              Title
+                              <input
+                                className="w-full rounded-xl border border-slate-200 px-4 py-2 text-sm text-slate-700"
+                                defaultValue={post.title}
+                                name="title"
+                                required
+                                type="text"
+                              />
+                            </label>
+                            <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
+                              Content
+                              <textarea
+                                className="min-h-[200px] w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2 font-mono text-sm text-slate-700"
+                                defaultValue={post.rawContent}
+                                name="content"
+                                required
+                              />
+                            </label>
+                            <button
+                              className="rounded-full border border-ink px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-ink transition hover:bg-ink hover:text-white"
+                              type="submit"
+                            >
+                              Save updates
+                            </button>
+                          </form>
+                        </details>
+                      </div>
                     </EditConsoleModal>
                   </li>
                 );
