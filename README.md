@@ -9,11 +9,30 @@ npm install
 npm run dev
 ```
 
+## Deploying to Vercel and Netlify
+
+This app is a standard Next.js App Router project and is ready for serverless deployment. The build script runs `prisma generate` automatically, so Prisma clients are available during builds.
+
+### Vercel
+
+1. Import the repository into Vercel.
+2. Set the environment variables listed below (plus any provider-specific values you use).
+3. Use the default build settings (`npm install`, `npm run build`, output: Next.js).
+4. Provision a PostgreSQL database and set `DATABASE_URL` to the managed connection string.
+
+### Netlify
+
+1. Create a new site from this repo.
+2. Netlify uses `netlify.toml` with the Next.js plugin and `npm run build`.
+3. Add the same environment variables as Vercel.
+4. Provide a managed PostgreSQL database connection for `DATABASE_URL`.
+
 ## Environment
 
 ```
 DATABASE_URL=
 NEXTAUTH_SECRET=
+NEXTAUTH_URL=
 GITHUB_CLIENT_ID=
 GITHUB_CLIENT_SECRET=
 GOOGLE_CLIENT_ID=
