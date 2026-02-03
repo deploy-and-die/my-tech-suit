@@ -5,7 +5,7 @@ import { formatBlogContent } from "@/lib/blogFormatter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-function formatDate(value: Date) {
+function formatDate(value) {
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
     day: "numeric",
@@ -13,7 +13,7 @@ function formatDate(value: Date) {
   }).format(value);
 }
 
-export default async function BlogDetailPage({ params }: { params: { id: string } }) {
+export default async function BlogDetailPage({ params }) {
   const post = await prisma.blogPost.findUnique({
     where: { id: params.id },
     include: { author: true },
