@@ -161,9 +161,9 @@ export async function archiveBlogPost(postId: string) {
     throw new Error("Post not found.");
   }
 
-  const isAdmin = isAdminUser(session.user);
+  const isAdmin = isAdminUser(session?.user);
   const canArchive =
-    isAdmin || (post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId));
+    isAdmin || (post.status === "DRAFT" && canManageOwnContent(session!.user!.id, post.authorId));
 
   if (!canArchive) {
     throw new Error("Not authorized.");
