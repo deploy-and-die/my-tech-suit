@@ -1,5 +1,5 @@
-const IMAGE_MODEL = process.env.NEXT_PUBLIC_OPENAI_IMAGE_MODEL ?? process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1";
-const API_KEY = process.env.NEXT_PUBLIC_OPENAI_API_KEY ?? process.env.OPENAI_API_KEY;
+const IMAGE_MODEL = process.env.OPENAI_IMAGE_MODEL ?? "gpt-image-1";
+const API_KEY = process.env.OPENAI_API_KEY;
 
 const FALLBACK_IMAGES = [
   "/images/blog/fallback-1.svg",
