@@ -248,7 +248,7 @@ export default async function BlogPage({
                       title={`Edit “${post.title}”`}
                       triggerLabel="Open editor"
                     >
-                      <form action={updateBlogPost.bind(null, post.id)} className="space-y-3" method="post">
+                      <form action={() => updateBlogPost(post.id)} className="space-y-3" method="post">
                           <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                             Title
                             <input
