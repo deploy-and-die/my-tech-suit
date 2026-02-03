@@ -28,7 +28,7 @@ export function UserStatusBadge() {
     );
   }
 
-  const isAdmin = isAdminUser(session.user);
+  const isAdmin = isAdminUser(session?.user);
   const email = session.user.email ?? "Unknown user";
 
   return (

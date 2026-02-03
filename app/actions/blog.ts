@@ -221,9 +221,9 @@ export async function deleteBlogPost(postId: string) {
     throw new Error("Post not found.");
   }
 
-  const isAdmin = isAdminUser(session.user);
+  const isAdmin = isAdminUser(session?.user);
   const isAuthorDraft =
-    post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId);
+    post.status === "DRAFT" && canManageOwnContent(session!.user!.id, post.authorId);
 
   if (!isAdmin && !isAuthorDraft) {
     throw new Error("Not authorized to delete this post.");
