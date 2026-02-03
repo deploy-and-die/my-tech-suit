@@ -36,13 +36,13 @@ export async function createBlogDraft(formData: FormData) {
     throw new Error("Title and content are required.");
   }
 
-  const isAdmin = isAdminUser(session.user);
+  const isAdmin = isAdminUser(session?.user);
 
   const post = await prisma.blogPost.create({
     data: {
       title,
       content,
-      authorId: session.user.id,
+      authorId: session!.user!.id,
       status: isAdmin ? "PUBLISHED" : "DRAFT",
       reviewRequestedAt: isAdmin ? null : new Date(),
     },
@@ -64,9 +64,9 @@ export async function updateBlogPost(postId: string, formData: FormData) {
     throw new Error("Post not found.");
   }
 
-  const isAdmin = isAdminUser(session.user);
+  const isAdmin = isAdminUser(session?.user);
   const canEdit =
-    isAdmin || (post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId));
+    isAdmin || (post.status === "DRAFT" && canManageOwnContent(session!.user!.id, post.authorId));
 
   if (!canEdit) {
     throw new Error("Not authorized.");
@@ -104,7 +104,7 @@ export async function requestBlogReview(postId: string) {
   }
 
   const canRequest =
-    post.status === "DRAFT" && canManageOwnContent(session.user.id, post.authorId);
+    post.status === "DRAFT" && canManageOwnContent(session!.user!.id, post.authorId);
 
   if (!canRequest) {
     throw new Error("Not authorized.");
