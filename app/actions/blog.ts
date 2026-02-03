@@ -52,7 +52,7 @@ export async function createBlogDraft(formData: FormData) {
   return { id: post.id, status: isAdmin ? "published" : "review" } as const;
 }
 
-export async function updateBlogPost(postId: string, formData: FormData) {
+export async function updateBlogPost(postId: string, formData: FormData): Promise<void> {
   const session = await auth();
   assertAuthenticated(session?.user?.id);
 
@@ -79,7 +79,7 @@ export async function updateBlogPost(postId: string, formData: FormData) {
     throw new Error("Title and content are required.");
   }
 
-  const updated = await prisma.blogPost.update({
+  await prisma.blogPost.update({
     where: { id: postId },
     data: {
       title,
@@ -88,10 +88,9 @@ export async function updateBlogPost(postId: string, formData: FormData) {
   });
 
   revalidatePath(BLOG_PATH);
-  return updated;
 }
 
-export async function requestBlogReview(postId: string) {
+export async function requestBlogReview(postId: string): Promise<void> {
   const session = await auth();
   assertAuthenticated(session?.user?.id);
 
@@ -110,7 +109,7 @@ export async function requestBlogReview(postId: string) {
     throw new Error("Not authorized.");
   }
 
-  const updated = await prisma.blogPost.update({
+  await prisma.blogPost.update({
     where: { id: postId },
     data: {
       reviewRequestedAt: new Date(),
@@ -118,7 +117,6 @@ export async function requestBlogReview(postId: string) {
   });
 
   revalidatePath(BLOG_PATH);
-  return updated;
 }
 
 export async function publishBlogPost(postId: string) {
@@ -149,7 +147,7 @@ export async function publishBlogPost(postId: string) {
   redirect("/blog?notice=published");
 }
 
-export async function archiveBlogPost(postId: string) {
+export async function archiveBlogPost(postId: string): Promise<void> {
   const session = await auth();
   assertAuthenticated(session?.user?.id);
 
@@ -169,7 +167,7 @@ export async function archiveBlogPost(postId: string) {
     throw new Error("Not authorized.");
   }
 
-  const updated = await prisma.blogPost.update({
+  await prisma.blogPost.update({
     where: { id: postId },
     data: {
       status: "ARCHIVED",
@@ -177,10 +175,9 @@ export async function archiveBlogPost(postId: string) {
   });
 
   revalidatePath(BLOG_PATH);
-  return updated;
 }
 
-export async function unarchiveBlogPost(postId: string) {
+export async function unarchiveBlogPost(postId: string): Promise<void> {
   const session = await auth();
   assertAuthenticated(session?.user?.id);
   assertAdmin(session?.user);
@@ -197,7 +194,7 @@ export async function unarchiveBlogPost(postId: string) {
     throw new Error("Only archived posts can be restored.");
   }
 
-  const updated = await prisma.blogPost.update({
+  await prisma.blogPost.update({
     where: { id: postId },
     data: {
       status: "DRAFT",
@@ -206,7 +203,6 @@ export async function unarchiveBlogPost(postId: string) {
   });
 
   revalidatePath(BLOG_PATH);
-  return updated;
 }
 
 export async function deleteBlogPost(postId: string) {

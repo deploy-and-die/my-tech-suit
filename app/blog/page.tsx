@@ -250,9 +250,8 @@ export default async function BlogPage({
                     >
                       <form
                         action={async (formData: FormData) => {
-                          const title = formData.get("title") as string;
-                          const content = formData.get("content") as string;
-                          await updateBlogPost(post.id, new FormData());
+                          "use server";
+                          await updateBlogPost(post.id, formData);
                         }}
                         className="space-y-3"
                         method="post"
@@ -286,7 +285,13 @@ export default async function BlogPage({
                     </EditConsoleModal>
                     <div className="mt-4 flex flex-wrap gap-2">
                       {!post.reviewRequestedAt ? (
-                        <form action={requestBlogReview.bind(null, post.id)} method="post">
+                        <form
+                          action={async (_formData: FormData) => {
+                            "use server";
+                            await requestBlogReview(post.id);
+                          }}
+                          method="post"
+                        >
                           <button
                             className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
                             type="submit"
@@ -295,7 +300,13 @@ export default async function BlogPage({
                           </button>
                         </form>
                       ) : null}
-                      <form action={deleteBlogPost.bind(null, post.id)} method="post">
+                      <form
+                        action={async (_formData: FormData) => {
+                          "use server";
+                          await deleteBlogPost(post.id);
+                        }}
+                        method="post"
+                      >
                         <button
                           className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-slate-400 hover:text-slate-700"
                           type="submit"
@@ -343,7 +354,13 @@ export default async function BlogPage({
                           </ReactMarkdown>
                           <div className="flex flex-wrap gap-2">
                             {canPublish ? (
-                              <form action={publishBlogPost.bind(null, post.id)} method="post">
+                              <form
+                                action={async (_formData: FormData) => {
+                                  "use server";
+                                  await publishBlogPost(post.id);
+                                }}
+                                method="post"
+                              >
                                 <button
                                   className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
                                   type="submit"
@@ -353,7 +370,13 @@ export default async function BlogPage({
                               </form>
                             ) : null}
                             {canArchive ? (
-                              <form action={archiveBlogPost.bind(null, post.id)} method="post">
+                              <form
+                                action={async (_formData: FormData) => {
+                                  "use server";
+                                  await archiveBlogPost(post.id);
+                                }}
+                                method="post"
+                              >
                                 <button
                                   className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-slate-400 hover:text-slate-700"
                                   type="submit"
@@ -362,7 +385,13 @@ export default async function BlogPage({
                                 </button>
                               </form>
                             ) : (
-                              <form action={unarchiveBlogPost.bind(null, post.id)} method="post">
+                              <form
+                                action={async (_formData: FormData) => {
+                                  "use server";
+                                  await unarchiveBlogPost(post.id);
+                                }}
+                                method="post"
+                              >
                                 <button
                                   className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-accentDark hover:text-ink"
                                   type="submit"
@@ -371,7 +400,13 @@ export default async function BlogPage({
                                 </button>
                               </form>
                             )}
-                            <form action={deleteBlogPost.bind(null, post.id)} method="post">
+                            <form
+                              action={async (_formData: FormData) => {
+                                "use server";
+                                await deleteBlogPost(post.id);
+                              }}
+                              method="post"
+                            >
                               <button
                                 className="rounded-full border border-red-200 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-red-500 transition hover:border-red-300 hover:text-red-600"
                                 type="submit"
@@ -384,7 +419,14 @@ export default async function BlogPage({
                             <summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                               Edit blog
                             </summary>
-                            <form action={updateBlogPost.bind(null, post.id)} className="mt-4 space-y-3" method="post">
+                            <form
+                              action={async (formData: FormData) => {
+                                "use server";
+                                await updateBlogPost(post.id, formData);
+                              }}
+                              className="mt-4 space-y-3"
+                              method="post"
+                            >
                               <label className="space-y-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                                 Title
                                 <input
