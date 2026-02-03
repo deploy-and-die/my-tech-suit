@@ -4,7 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { canManageOwnContent, isAdminUser } from "@/lib/permissions";
+import { canManageOwnContent, isAdminUser, type Role } from "@/lib/permissions";
 
 const BLOG_PATH = "/blog";
 
@@ -19,7 +19,7 @@ function assertAuthenticated(userId?: string) {
   }
 }
 
-function assertAdmin(user?: { role?: string; email?: string | null }) {
+function assertAdmin(user?: { role?: Role; email?: string | null }) {
   if (!isAdminUser(user)) {
     throw new Error("Not authorized.");
   }
