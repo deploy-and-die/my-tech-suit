@@ -3,42 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type HeroStat = {
-  id: string;
-  label: string;
-  value?: number;
-  valueText?: string;
-  prefix?: string;
-  suffix?: string;
-  unit?: string;
-  subline?: string;
-};
-
-type Role = {
-  id: string;
-  title: string;
-  company: string;
-  duration: string;
-  domain: string;
-  headline: string;
-  impacts: string[];
-};
-
-type Highlight = {
-  id: string;
-  label: string;
-  value: string;
-  detail: string;
-};
-
-type SkillCluster = {
-  id: string;
-  title: string;
-  skills: string;
-  usage: string;
-};
-
-const heroStats: HeroStat[] = [
+const heroStats = [
   {
     id: "years",
     label: "Production Engineering Experience",
@@ -66,7 +31,7 @@ const heroStats: HeroStat[] = [
   },
 ];
 
-const roles: Role[] = [
+const roles = [
   {
     id: "karbon",
     title: "SDE II",
@@ -113,7 +78,7 @@ const roles: Role[] = [
   },
 ];
 
-const highlights: Highlight[] = [
+const highlights = [
   {
     id: "gtv",
     label: "₹95L/month",
@@ -146,7 +111,7 @@ const highlights: Highlight[] = [
   },
 ];
 
-const skillClusters: SkillCluster[] = [
+const skillClusters = [
   {
     id: "backend",
     title: "Backend & APIs",
@@ -175,14 +140,14 @@ const skillClusters: SkillCluster[] = [
 
 const CTA_TEXT = "Case Studies (coming soon)";
 
-function useCountUp(target: number, duration = 1600) {
+function useCountUp(target, duration = 1600) {
   const [value, setValue] = useState(0);
-  const startRef = useRef<number | null>(null);
+  const startRef = useRef(null);
 
   useEffect(() => {
-    let frame: number;
+    let frame;
 
-    const animate = (timestamp: number) => {
+    const animate = (timestamp) => {
       if (startRef.current === null) {
         startRef.current = timestamp;
       }
@@ -206,8 +171,8 @@ function useCountUp(target: number, duration = 1600) {
   return value;
 }
 
-function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
-  const ref = useRef<T | null>(null);
+function useInView(options) {
+  const ref = useRef(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
@@ -229,7 +194,7 @@ function useInView<T extends HTMLElement>(options?: IntersectionObserverInit) {
   return { ref, isInView };
 }
 
-function HeroStatCard({ stat }: { stat: HeroStat }) {
+function HeroStatCard({ stat }) {
   const count = useCountUp(stat.value ?? 0, 1600);
   const displayValue = useMemo(() => {
     if (stat.value === undefined) {
@@ -251,8 +216,8 @@ function HeroStatCard({ stat }: { stat: HeroStat }) {
   );
 }
 
-function ImpactCard({ highlight }: { highlight: Highlight }) {
-  const { ref, isInView } = useInView<HTMLDivElement>({ threshold: 0.3 });
+function ImpactCard({ highlight }) {
+  const { ref, isInView } = useInView({ threshold: 0.3 });
 
   return (
     <div
