@@ -5,6 +5,9 @@ import { formatBlogContent } from "@/lib/blogFormatter";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 function formatDate(value) {
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
