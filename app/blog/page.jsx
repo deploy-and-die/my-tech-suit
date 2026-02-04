@@ -19,6 +19,9 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 const statusLabels = {
   DRAFT: "Draft",
   PUBLISHED: "Published",

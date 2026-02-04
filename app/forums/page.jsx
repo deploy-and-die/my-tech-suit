@@ -23,24 +23,56 @@ export default function ForumsPage() {
 
   const remaining = useMemo(() => 500 - formData.message.length, [formData.message.length]);
   return (
-    <section className="space-y-6">
-      <h1 className="text-3xl font-semibold text-slate-900">Forums</h1>
-      <p className="max-w-2xl text-slate-600">
-        Structured discussion spaces with categories, threads, and one-level replies.
-      </p>
+    <section className="space-y-10">
+      <div className="rounded-[32px] border border-white/70 bg-gradient-to-br from-[#f5e9ff] via-white to-[#dfe9ff] p-10 shadow-soft">
+        <p className="text-xs font-semibold uppercase tracking-[0.4em] text-slate-500">
+          Community forum
+        </p>
+        <h1 className="mt-4 text-4xl font-semibold text-slate-900 sm:text-5xl">Forums</h1>
+        <p className="mt-4 max-w-2xl text-lg text-slate-600">
+          Structured discussion spaces with categories, threads, and thoughtful replies. The focus
+          is on clarity, tradeoffs, and calm collaboration.
+        </p>
+      </div>
       <AuthPrompt
         actionLabel="Start a discussion"
         context="Launch a new thread when you want to gather opinions or share a proposal."
       />
-      <div className="rounded-lg border border-slate-100 bg-slate-50 p-6">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
-          Categories
-        </p>
-        <ul className="mt-4 space-y-2 text-slate-600">
-          <li>Product strategy</li>
-          <li>Engineering leadership</li>
-          <li>System design</li>
-        </ul>
+      <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="rounded-3xl border border-slate-100 bg-white/90 p-6 shadow-soft">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            Categories
+          </p>
+          <div className="mt-4 grid gap-4 sm:grid-cols-3">
+            {[
+              { title: "Product strategy", detail: "Roadmaps, prioritization, user insight." },
+              { title: "Engineering leadership", detail: "Org design, reliability, delivery." },
+              { title: "System design", detail: "Architecture reviews and scalability." },
+            ].map((category) => (
+              <div
+                className="rounded-2xl border border-white/80 bg-slate-50/80 p-4"
+                key={category.title}
+              >
+                <p className="text-sm font-semibold text-slate-900">{category.title}</p>
+                <p className="mt-2 text-sm text-slate-500">{category.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="rounded-3xl border border-dashed border-slate-200 bg-white/80 p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            Forum guidelines
+          </p>
+          <p className="mt-4 text-sm text-slate-600">
+            Keep it kind, specific, and actionable. Share context, highlight tradeoffs, and
+            document any assumptions so the next person can learn from the thread.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+            <span className="rounded-full border border-slate-200 px-3 py-1">Be thoughtful</span>
+            <span className="rounded-full border border-slate-200 px-3 py-1">Show evidence</span>
+            <span className="rounded-full border border-slate-200 px-3 py-1">Stay concise</span>
+          </div>
+        </div>
       </div>
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <form

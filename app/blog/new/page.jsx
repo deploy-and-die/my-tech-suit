@@ -3,6 +3,9 @@ import { redirect } from "next/navigation";
 import { CreateDraftForm } from "@/components/blog/CreateDraftForm";
 import Link from "next/link";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export default async function NewBlogPage() {
   const session = await auth();
   if (!session?.user) {
