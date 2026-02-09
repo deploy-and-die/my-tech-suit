@@ -204,12 +204,13 @@ function HeroStatCard({ stat }) {
   }, [count, stat.prefix, stat.suffix, stat.unit, stat.value, stat.valueText]);
 
   return (
-    <div className="rounded-2xl border border-white/70 bg-white/80 p-5 shadow-soft backdrop-blur">
-      <div className="text-2xl font-semibold text-slate-900 sm:text-3xl">
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/70 bg-white/85 p-5 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#f6f2ff]/60 via-transparent to-[#dce8ff]/60 opacity-0 transition duration-300 group-hover:opacity-100" />
+      <div className="relative text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl">
         {displayValue}
       </div>
-      {stat.subline ? <p className="text-sm text-slate-500">{stat.subline}</p> : null}
-      <p className="mt-3 text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
+      {stat.subline ? <p className="relative text-sm text-slate-500">{stat.subline}</p> : null}
+      <p className="relative mt-3 text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
         {stat.label}
       </p>
     </div>
@@ -237,7 +238,9 @@ function ImpactCard({ highlight }) {
 
 export default function WorkPage() {
   return (
-    <section className="space-y-12">
+    <section className="relative space-y-12 overflow-hidden rounded-[30px] border border-white/70 bg-white/30 p-5 shadow-soft backdrop-blur sm:p-8">
+      <div className="pointer-events-none absolute -right-20 -top-16 h-48 w-48 rounded-full bg-[#dbc9ff]/60 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-24 -left-16 h-52 w-52 rounded-full bg-[#cde1ff]/60 blur-3xl" />
       <header className="space-y-4">
         <h1 className="text-3xl font-semibold text-slate-900">Impact Studio</h1>
         <p className="max-w-2xl text-slate-600">
@@ -250,14 +253,18 @@ export default function WorkPage() {
         </p>
       </header>
 
-      <section className="space-y-6">
+      <section className="relative space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold text-slate-900">Impact Studio at a glance</h2>
           <span className="text-sm uppercase tracking-[0.25em] text-slate-400">Live metrics</span>
         </div>
         <div className="grid gap-4 md:grid-cols-2">
-          {heroStats.map((stat) => (
-            <div key={stat.id} className="animate-[fadeUp_0.7s_ease-out]">
+          {heroStats.map((stat, index) => (
+            <div
+              key={stat.id}
+              className="animate-[fadeUp_0.7s_ease-out]"
+              style={{ animationDelay: `${index * 120}ms`, animationFillMode: "backwards" }}
+            >
               <HeroStatCard stat={stat} />
             </div>
           ))}
@@ -266,13 +273,14 @@ export default function WorkPage() {
 
       <section className="space-y-6">
         <h2 className="text-xl font-semibold text-slate-900">Experience timeline</h2>
-        <div className="relative space-y-6 border-l border-slate-200 pl-6">
+        <div className="relative space-y-6 border-l border-slate-200/80 pl-6">
           {roles.map((role) => (
             <details
               key={role.id}
-              className="group rounded-2xl border border-white/70 bg-white/80 p-5 shadow-soft backdrop-blur"
+              className="group relative rounded-2xl border border-white/70 bg-white/85 p-5 shadow-soft backdrop-blur transition duration-300 hover:border-slate-200"
             >
-              <summary className="cursor-pointer list-none space-y-2">
+              <span className="absolute -left-[34px] top-8 h-3.5 w-3.5 rounded-full border-2 border-white bg-slate-500 shadow" />
+              <summary className="cursor-pointer list-none space-y-2 marker:content-none">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
                     {role.duration}
@@ -290,8 +298,11 @@ export default function WorkPage() {
                 <p className="text-sm font-medium text-slate-500 group-open:hidden">
                   View key impact →
                 </p>
+                <p className="hidden text-sm font-medium text-violet-600 group-open:block">
+                  Collapse details ↑
+                </p>
               </summary>
-              <div className="mt-4 space-y-3 border-t border-slate-200 pt-4 text-sm text-slate-600">
+              <div className="mt-4 space-y-3 border-t border-slate-200 pt-4 text-sm text-slate-600 group-open:animate-[fadeUp_0.35s_ease-out]">
                 <p className="font-semibold uppercase tracking-[0.2em] text-slate-400">
                   Key impact
                 </p>
@@ -309,8 +320,14 @@ export default function WorkPage() {
       <section className="space-y-6">
         <h2 className="text-xl font-semibold text-slate-900">Impact highlights</h2>
         <div className="grid gap-4 md:grid-cols-2">
-          {highlights.map((highlight) => (
-            <ImpactCard key={highlight.id} highlight={highlight} />
+          {highlights.map((highlight, index) => (
+            <div
+              key={highlight.id}
+              style={{ transitionDelay: `${index * 80}ms` }}
+              className="transition-all duration-300"
+            >
+              <ImpactCard highlight={highlight} />
+            </div>
           ))}
         </div>
       </section>
@@ -321,7 +338,7 @@ export default function WorkPage() {
           {skillClusters.map((cluster) => (
             <div
               key={cluster.id}
-              className="rounded-2xl border border-white/70 bg-white/80 p-5 shadow-soft backdrop-blur"
+              className="rounded-2xl border border-white/70 bg-white/85 p-5 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
                 {cluster.title}
