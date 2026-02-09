@@ -48,6 +48,9 @@ export function ContactSection() {
   return (
     <section className="space-y-10 rounded-[32px] border border-accent/30 bg-white/80 p-8 shadow-soft backdrop-blur">
       <div className="space-y-4">
+        <p className="text-sm font-semibold uppercase tracking-[0.35em] text-slate-500">
+          Community &amp; Writing
+        </p>
         <div className="inline-flex items-center gap-3 rounded-full bg-lavender px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-ink">
           Send me a note
         </div>
