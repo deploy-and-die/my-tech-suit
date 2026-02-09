@@ -204,7 +204,7 @@ function HeroStatCard({ stat }) {
   }, [count, stat.prefix, stat.suffix, stat.unit, stat.value, stat.valueText]);
 
   return (
-    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/70 bg-white/85 p-5 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
+    <div className="group relative h-full overflow-hidden rounded-2xl border border-white/70 bg-white/85 p-6 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none">
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-[#f6f2ff]/60 via-transparent to-[#dce8ff]/60 opacity-0 transition duration-300 group-hover:opacity-100" />
       <div className="relative text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl">
         {displayValue}
@@ -223,7 +223,7 @@ function ImpactCard({ highlight }) {
   return (
     <div
       ref={ref}
-      className={`rounded-2xl border border-white/70 bg-white/80 p-5 shadow-soft backdrop-blur transition duration-700 ease-out ${
+      className={`rounded-2xl border border-white/70 bg-white/85 p-6 shadow-soft backdrop-blur transition duration-700 ease-out ${
         isInView ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       }`}
     >
@@ -238,10 +238,10 @@ function ImpactCard({ highlight }) {
 
 export default function WorkPage() {
   return (
-    <section className="relative space-y-12 overflow-hidden rounded-[30px] border border-white/70 bg-white/30 p-5 shadow-soft backdrop-blur sm:p-8">
+    <section className="relative mx-auto space-y-10 overflow-hidden rounded-[32px] border border-white/70 bg-white/30 p-6 shadow-soft backdrop-blur sm:space-y-12 sm:p-8 lg:space-y-14 lg:p-10">
       <div className="pointer-events-none absolute -right-20 -top-16 h-48 w-48 rounded-full bg-[#dbc9ff]/60 blur-3xl" />
       <div className="pointer-events-none absolute -bottom-24 -left-16 h-52 w-52 rounded-full bg-[#cde1ff]/60 blur-3xl" />
-      <header className="space-y-4">
+      <header className="space-y-3">
         <h1 className="text-3xl font-semibold text-slate-900">Impact Studio</h1>
         <p className="max-w-2xl text-slate-600">
           I’ve spent the last few years building and operating backend systems in fintech and AI
@@ -253,12 +253,12 @@ export default function WorkPage() {
         </p>
       </header>
 
-      <section className="relative space-y-6">
+      <section className="relative space-y-5 sm:space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-semibold text-slate-900">Impact Studio at a glance</h2>
           <span className="text-sm uppercase tracking-[0.25em] text-slate-400">Live metrics</span>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
           {heroStats.map((stat, index) => (
             <div
               key={stat.id}
@@ -271,9 +271,9 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-5 sm:space-y-6">
         <h2 className="text-xl font-semibold text-slate-900">Experience timeline</h2>
-        <div className="relative space-y-6 border-l border-slate-200/80 pl-6">
+        <div className="relative space-y-5 border-l border-slate-200/80 pl-6 sm:space-y-6">
           {roles.map((role) => (
             <details
               key={role.id}
@@ -317,9 +317,9 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-5 sm:space-y-6">
         <h2 className="text-xl font-semibold text-slate-900">Impact highlights</h2>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
           {highlights.map((highlight, index) => (
             <div
               key={highlight.id}
@@ -332,13 +332,13 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-5 sm:space-y-6">
         <h2 className="text-xl font-semibold text-slate-900">Skills in practice</h2>
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 lg:gap-6">
           {skillClusters.map((cluster) => (
             <div
               key={cluster.id}
-              className="rounded-2xl border border-white/70 bg-white/85 p-5 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none"
+              className="rounded-2xl border border-white/70 bg-white/85 p-6 shadow-soft backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transform-none"
             >
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
                 {cluster.title}
@@ -350,7 +350,7 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <section className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-soft backdrop-blur">
+      <section className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-soft backdrop-blur sm:p-7">
         <div className="space-y-4">
           <p className="text-lg font-semibold text-slate-900">
             Want to see how these systems were actually built?
