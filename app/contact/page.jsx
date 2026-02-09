@@ -4,8 +4,8 @@ import { SocialSection } from "@/components/contact/SocialSection";
 export default function ContactPage() {
   return (
     <div className="space-y-12">
-      <SocialSection />
       <ContactSection />
+      <SocialSection />
     </div>
   );
 }
