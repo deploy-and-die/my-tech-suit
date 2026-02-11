@@ -3,7 +3,13 @@ SHELL := /bin/bash
 
 IMAGE ?= my-tech-suit
 COMPOSE ?= docker compose
-DB_URL ?= postgresql://mytech:mytech@localhost:5432/mytech?schema=public
+POSTGRES_HOST ?= localhost
+POSTGRES_PORT ?= 5432
+POSTGRES_DB ?= mytech
+POSTGRES_SCHEMA ?= public
+POSTGRES_USER ?= mytech
+POSTGRES_PASSWORD ?= mytech
+DB_URL ?= $(if $(DATABASE_URL),$(DATABASE_URL),postgresql://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)?schema=$(POSTGRES_SCHEMA))
 NEXTPORT ?= 3000
 
 .PHONY: help install dev build start lint prisma-generate prisma-migrate docker-build docker-up docker-dev docker-down docker-logs up

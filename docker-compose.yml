@@ -5,7 +5,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: ${DATABASE_URL:-postgresql://mytech:mytech@postgres:5432/mytech?schema=public}
+      DATABASE_URL: ${DATABASE_URL:-postgresql://${POSTGRES_USER:-mytech}:${POSTGRES_PASSWORD:-mytech}@postgres:${POSTGRES_PORT:-5432}/${POSTGRES_DB:-mytech}?schema=${POSTGRES_SCHEMA:-public}}
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:-dev-secret}
       GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID:-}
       GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET:-}

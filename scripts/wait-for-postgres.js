@@ -2,7 +2,28 @@
 const net = require("net");
 const { spawn } = require("child_process");
 
-const DEFAULT_URL = "postgresql://mytech:mytech@localhost:5432/mytech?schema=public";
+function buildConnectionString({
+  host = "localhost",
+  port = "5432",
+  user = "mytech",
+  password = "mytech",
+  database = "mytech",
+  schema = "public",
+}) {
+  const encodedUser = encodeURIComponent(user);
+  const encodedPassword = password ? `:${encodeURIComponent(password)}` : "";
+  const schemaSuffix = schema ? `?schema=${schema}` : "";
+  return `postgresql://${encodedUser}${encodedPassword}@${host}:${port}/${database}${schemaSuffix}`;
+}
+
+const DEFAULT_URL = buildConnectionString({
+  host: process.env.POSTGRES_HOST,
+  port: process.env.POSTGRES_PORT,
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
+  schema: process.env.POSTGRES_SCHEMA,
+});
 
 function getTarget() {
   const rawUrl = process.env.DATABASE_URL || DEFAULT_URL;

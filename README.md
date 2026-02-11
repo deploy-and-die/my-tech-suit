@@ -56,7 +56,7 @@ Run the full stack (Next.js app + PostgreSQL) locally:
 docker compose up --build
 ```
 
-This uses the default Postgres connection string `postgresql://mytech:mytech@postgres:5432/mytech?schema=public`. Use that URL when adding the `DATABASE_URL` secret (for example in CI/CD or Vercel) when you provision the companion Postgres instance. Override it in `.env` or through the Compose file if you deploy a managed database instead of the bundled container.
+This uses the Postgres settings defined in `docker-compose.yml` (the user, password, and database default to `mytech`). Build your `DATABASE_URL` in the form `postgresql://<user>:<password>@postgres:5432/<db>?schema=public` when configuring secrets (for example in CI/CD or Vercel) and override it in `.env` or through the Compose file if you deploy a managed database instead of the bundled container.
 
 The application container automatically runs `prisma migrate deploy` on startup so schema changes are applied whenever it boots. Set `SKIP_DB_MIGRATE=true` if you prefer to manage migrations yourself.
 
@@ -67,7 +67,7 @@ container, expose the database and run migrations from the host. Migrations live
 `prisma/migrations`—commit them so every environment can apply the same schema.
 
 1. Start the database: `docker compose up -d postgres` (port `5432` is published to `localhost`).
-2. Use `postgresql://mytech:mytech@localhost:5432/mytech?schema=public` as `DATABASE_URL` in `.env.local`.
+2. Add `DATABASE_URL` to `.env.local` so it points at the Compose database, e.g. `postgresql://<user>:<password>@localhost:5432/<db>?schema=public` (the defaults in `docker-compose.yml` set user/password/db to `mytech`).
 3. Run `npm run db:ready` whenever you start the stack. This waits for PostgreSQL to accept connections and then executes `prisma migrate deploy` against the exposed port.
 4. Start your dev server with `npm run dev`.
 
