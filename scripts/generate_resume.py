@@ -41,6 +41,13 @@ def bullet(text, styles):
     return Paragraph(f"- {text}", styles["bullet"])
 
 
+def impact_item(number, title, text, styles):
+    return Paragraph(
+        f"<font color='#176EDB' size='10.8'><b>{number} / {title}</b></font><br/>{text}",
+        styles["impact"],
+    )
+
+
 def build_resume():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
@@ -50,7 +57,7 @@ def build_resume():
         leftMargin=15 * mm,
         rightMargin=15 * mm,
         topMargin=10 * mm,
-        bottomMargin=9 * mm,
+        bottomMargin=7 * mm,
         title="Syed Zaid Ali - Backend Engineer Resume",
         author="Syed Zaid Ali",
         subject="Backend Engineer with 4+ years in FinTech and AI accounting",
@@ -106,6 +113,24 @@ def build_resume():
             leading=10,
             textColor=BLUE,
             spaceAfter=0,
+        ),
+        "impact_section": ParagraphStyle(
+            "ImpactSection",
+            parent=base["Heading2"],
+            fontName="Helvetica-Bold",
+            fontSize=11.2,
+            leading=13.2,
+            textColor=BLUE,
+            spaceAfter=0,
+        ),
+        "impact": ParagraphStyle(
+            "Impact",
+            parent=base["Normal"],
+            fontName="Helvetica",
+            fontSize=9.5,
+            leading=12.7,
+            textColor=NAVY,
+            spaceAfter=5.5,
         ),
         "body": ParagraphStyle(
             "Body",
@@ -171,13 +196,29 @@ def build_resume():
         )
     )
 
-    story += section("Selected Engineering Impact", styles)
-    impact_bullets = [
-        "Modernized the MDS API layer with thin HTTP boundaries, service-owned query orchestration, standardized REST contracts, and feature-flagged rollout.",
-        "Reduced a measured bank-statement request from 26 to 10 database queries through batching and query optimization; set a default cursor-paginated page size of 20.",
-        "Validated high-traffic behavior at 500 concurrent users with zero failures, supported by repeatable load-test reporting, Swagger documentation, and Postman flows.",
+    story += [
+        Spacer(1, 9),
+        Paragraph("SELECTED ENGINEERING IMPACT", styles["impact_section"]),
+        HRFlowable(width="100%", thickness=0.9, color=LIGHT, spaceBefore=2, spaceAfter=6),
     ]
-    story.extend(bullet(item, styles) for item in impact_bullets)
+    impact_bullets = [
+        (
+            "01",
+            "PRODUCTION REVAMP & SERVICE REWRITE",
+            "Led the MDS API production revamp and service rewrite, separating HTTP boundaries from service-owned workflows and query orchestration for safer releases and long-term maintainability.",
+        ),
+        (
+            "02",
+            "SYSTEM DESIGN & ENGINEERING FOUNDATIONS",
+            "Led the product's backend system-design revamp and resolved major engineering issues across service boundaries, query ownership, database access, rollout safety, testability, and observability.",
+        ),
+        (
+            "03",
+            "PRODUCTION READINESS",
+            "Raised production readiness with feature-flagged rollout, Swagger and Postman validation, positive and negative API tests, and database-connection profiling under load.",
+        ),
+    ]
+    story.extend(impact_item(*item, styles) for item in impact_bullets)
 
     story += section("Experience", styles)
     story.append(role_header("SDE II", "Karbon Business", "Oct 2024 - Present", styles))
