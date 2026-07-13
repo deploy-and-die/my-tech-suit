@@ -61,7 +61,7 @@ export function ProfileModal() {
             <div className="modal-stats">
               <div><strong>4+</strong><span>Years</span></div>
               <div><strong>₹95L+</strong><span>Monthly GTV</span></div>
-              <div><strong>500</strong><span>Concurrent load test</span></div>
+              <div><strong>Led</strong><span>Production revamp &amp; service rewrite</span></div>
             </div>
 
             <div className="modal-strengths">

@@ -139,7 +139,7 @@ export default function HomePage() {
           </div>
           <div className="proof-row">
             <div className="proof-stat"><strong>₹95L<sup>+</sup></strong><span>monthly GTV handled</span></div>
-            <div className="proof-stat"><strong>500</strong><span>concurrent-user load test</span></div>
+            <div className="proof-stat"><strong>Led</strong><span>production revamp &amp; service rewrite</span></div>
           </div>
           <div className="availability"><span /> Open to senior engineering conversations</div>
         </div>
