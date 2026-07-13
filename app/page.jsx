@@ -130,7 +130,7 @@ export default function HomePage() {
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">Explore my impact <span>↓</span></a>
-            <a className="button button-secondary" href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">View résumé <span>↗</span></a>
+            <a className="button button-secondary" href="/Syed_Zaid_Ali_Resume.pdf?v=20260714-2" target="_blank" rel="noreferrer">View résumé <span>↗</span></a>
           </div>
           <div className="profile-links" aria-label="Professional profiles">
             <span>Find me online</span>
@@ -304,7 +304,7 @@ export default function HomePage() {
         </div>
         <div className="footer-bottom">
           <p>© 2026 Zaid Ali</p>
-          <div><a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
+          <div><a href="/Syed_Zaid_Ali_Resume.pdf?v=20260714-2" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
         </div>
       </footer>
     </main>

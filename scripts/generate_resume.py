@@ -22,11 +22,11 @@ SLATE = colors.HexColor("#526174")
 LIGHT = colors.HexColor("#D8E2F0")
 
 
-def section(title, styles):
+def section(title, styles, space_before=7):
     return [
-        Spacer(1, 6),
+        Spacer(1, space_before),
         Paragraph(title.upper(), styles["section"]),
-        HRFlowable(width="100%", thickness=0.7, color=LIGHT, spaceBefore=2, spaceAfter=5),
+        HRFlowable(width="100%", thickness=0.7, color=LIGHT, spaceBefore=2, spaceAfter=5.5),
     ]
 
 
@@ -62,31 +62,41 @@ def build_resume():
             "Name",
             parent=base["Heading1"],
             fontName="Helvetica-Bold",
-            fontSize=24,
-            leading=25,
+            fontSize=29,
+            leading=31,
             textColor=NAVY,
             alignment=TA_CENTER,
-            spaceAfter=1,
+            spaceAfter=3,
         ),
         "headline": ParagraphStyle(
             "Headline",
             parent=base["Normal"],
             fontName="Helvetica-Bold",
-            fontSize=9.5,
-            leading=11.5,
+            fontSize=10.5,
+            leading=12.5,
             textColor=BLUE,
             alignment=TA_CENTER,
-            spaceAfter=3,
+            spaceAfter=4,
         ),
         "contact": ParagraphStyle(
             "Contact",
             parent=base["Normal"],
             fontName="Helvetica",
-            fontSize=8.1,
-            leading=10,
+            fontSize=8.5,
+            leading=10.5,
             textColor=SLATE,
             alignment=TA_CENTER,
-            spaceAfter=3,
+            spaceAfter=1,
+        ),
+        "profiles": ParagraphStyle(
+            "Profiles",
+            parent=base["Normal"],
+            fontName="Helvetica-Bold",
+            fontSize=8.5,
+            leading=10.5,
+            textColor=BLUE,
+            alignment=TA_CENTER,
+            spaceAfter=0,
         ),
         "section": ParagraphStyle(
             "Section",
@@ -142,20 +152,32 @@ def build_resume():
         Paragraph(
             "+91 9900713753  |  "
             '<a href="mailto:zaidali753@gmail.com" color="#176EDB">zaidali753@gmail.com</a>  |  '
-            "Bengaluru, India  |  "
-            '<a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" color="#176EDB">LinkedIn</a>  |  '
-            '<a href="https://github.com/compile-and-cry" color="#176EDB">GitHub</a>',
+            "Bengaluru, India",
             styles["contact"],
+        ),
+        Paragraph(
+            '<a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" color="#176EDB">LinkedIn</a>  |  '
+            '<a href="https://github.com/compile-and-cry" color="#176EDB">GitHub</a>  |  '
+            '<a href="https://medium.com/@zaidali753" color="#176EDB">Medium</a>',
+            styles["profiles"],
         ),
     ]
 
-    story += section("Professional Summary", styles)
+    story += section("Professional Summary", styles, space_before=0)
     story.append(
         Paragraph(
             "Backend Engineer with 4+ years building scalable REST APIs, distributed systems, and high-volume payment platforms for FinTech and AI products. Hands-on with Python, Django, FastAPI, Rust, Actix, SQL, Redis, AWS, and Azure; experienced in system design, data modeling, event-driven architecture, high availability, observability, operational excellence, and production ownership.",
             styles["body"],
         )
     )
+
+    story += section("Selected Engineering Impact", styles)
+    impact_bullets = [
+        "Modernized the MDS API layer with thin HTTP boundaries, service-owned query orchestration, standardized REST contracts, and feature-flagged rollout.",
+        "Reduced a measured bank-statement request from 26 to 10 database queries through batching and query optimization; set a default cursor-paginated page size of 20.",
+        "Validated high-traffic behavior at 500 concurrent users with zero failures, supported by repeatable load-test reporting, Swagger documentation, and Postman flows.",
+    ]
+    story.extend(bullet(item, styles) for item in impact_bullets)
 
     story += section("Experience", styles)
     story.append(role_header("SDE II", "Karbon Business", "Oct 2024 - Present", styles))
@@ -164,7 +186,8 @@ def build_resume():
         "Released Multi-user Flow, Journal Voucher Flow, Billing Module, and SSO + OAuth 2.0 with authentication and authorization controls.",
         "Spearheaded FinBox bank-statement ingestion across PDF, Excel, and images; reduced manual effort 70%, achieved 98% accuracy, and improved onboarding 40%.",
         "Built real-time Tally APIs and a Windows connector for bi-directional AP, AR, and journal-voucher sync with idempotency, retries, and reconciliation; drove 3x adoption across 500+ users.",
-        "Redesigned Django service boundaries, standardized REST API contracts, optimized database queries, introduced cursor pagination, and validated high-concurrency behavior through load testing.",
+        "Redesigned Django service boundaries and REST API contracts; added Swagger documentation, Postman validation flows, positive and negative API tests, and feature-flagged rollout controls.",
+        "Optimized database access for high throughput, standardized cursor pagination, and profiled connection behavior under concurrency to improve production readiness.",
         "Led incident response for critical onboarding services, cutting recovery time 95%; raised automated test coverage to 80% and reduced failures 50%.",
     ]
     story.extend(bullet(item, styles) for item in karbon_bullets)
@@ -173,7 +196,8 @@ def build_resume():
     story.append(role_header("Backend Engineer", "Juspay", "Sep 2022 - May 2024", styles))
     juspay_bullets = [
         "Owned system design and production operations for reconciliation microservices processing millions of payment transactions daily.",
-        "Led refactoring that improved maintainability and engineering efficiency by 40%; built generic APIs, cron jobs, ETL pipelines, and merchant integrations.",
+        "Led service refactoring that improved maintainability and engineering efficiency by 40%, strengthening modularity, testability, and release confidence.",
+        "Built reusable APIs, cron jobs, ETL pipelines, and merchant integrations for automated reconciliation and financial-data workflows.",
         "Reduced integration latency by 30% through API design, performance optimization, and cross-functional delivery.",
         "Built CI/CD automation with Docker and Jenkins, accelerating releases 50% while keeping production downtime below 1%.",
     ]
