@@ -42,9 +42,10 @@ const experience = [
     bullets: [
       "Took engineering ownership of a complete product revamp—raising the bar for durability, availability, maintainability, and release quality.",
       "Released multi-user workflows, Journal Voucher flows, the Billing module, and SSO + OAuth capabilities across the product.",
-      "Designed core APIs for real-time, bi-directional Tally sync with idempotency, retries, and reconciliation safeguards.",
-      "Delivered a prepaid cards system end to end, reliably handling ₹95L+ in monthly GTV.",
-      "Led complex bank-statement ingestion across PDF, Excel, and image formats for the AI Accountant.",
+      "Automated PDF, Excel, and image bank-statement ingestion—cutting manual effort 70%, reaching 98% accuracy, and improving onboarding 40%.",
+      "Built real-time, bi-directional Tally sync with idempotency, retries, and reconciliation; the connector drove 3× adoption across 500+ users.",
+      "Migrated 50 GB+ of production data without service interruption and delivered prepaid-card flows handling ₹95L+ monthly GTV.",
+      "Improved onboarding incident recovery by 95%, raised test coverage to 80%, and reduced service failures by 50%.",
     ],
   },
   {
@@ -56,9 +57,10 @@ const experience = [
       "Built and stabilized backend systems where correctness, throughput, and operational clarity were non-negotiable.",
     bullets: [
       "Owned reconciliation microservices and the surrounding system architecture.",
-      "Led codebase refactoring that improved maintainability and long-term reliability.",
-      "Built reusable data-access APIs and ETL workflows for merchant data pipelines.",
-      "Partnered across product and infrastructure teams to improve behavior under peak load.",
+      "Led codebase refactoring that improved maintainability and engineering efficiency by 40%.",
+      "Built reusable data-access APIs and ETL workflows for merchant pipelines processing millions of daily transactions.",
+      "Reduced integration latency by 30% through API architecture and cross-functional delivery improvements.",
+      "Automated delivery with Docker and Jenkins, accelerating releases 50% while keeping downtime below 1%.",
     ],
   },
   {
@@ -71,16 +73,28 @@ const experience = [
     bullets: [
       "Designed a real-time logging pipeline using Kafka.",
       "Built a Kibana-style analytics dashboard for live operational insight.",
-      "Worked across data, backend, and presentation layers to ship usable internal tooling.",
+      "Used customer feedback to accelerate product iteration by 25%.",
+      "Improved data-collection accuracy to 95% for high-stakes fintech decisions.",
     ],
   },
 ];
 
 const capabilities = [
-  ["Backend & APIs", "Python · Django · FastAPI · REST · Service architecture"],
-  ["Reliability", "Idempotency · Retries · Reconciliation · Feature flags"],
-  ["Data systems", "PostgreSQL · SQL · Redis · BigQuery · ClickHouse"],
-  ["Platform", "Kafka · Docker · AWS · Azure · Jenkins"],
+  ["Languages & services", "Python · Rust · Actix · Django · FastAPI · REST"],
+  ["Architecture", "Clean architecture · Distributed systems · Microservices · Event-driven design"],
+  ["Reliability & security", "Idempotency · Retries · Reconciliation · Feature flags · Data privacy"],
+  ["Data & pipelines", "PostgreSQL · SQL · Redis · BigQuery · ClickHouse · ETL"],
+  ["Cloud & delivery", "Kafka · Docker · Jenkins · AWS · Azure"],
+  ["Observability & leadership", "Kibana · Logging · Monitoring · Code reviews · Technical leadership"],
+];
+
+const scaleMetrics = [
+  ["70%", "less manual effort", "Automated multi-format bank-statement ingestion."],
+  ["98%", "parsing accuracy", "Improved confidence in AI accounting onboarding."],
+  ["3×", "user adoption", "Tally connector supporting 500+ active users."],
+  ["50 GB+", "data migrated", "Moved production data without service interruption."],
+  ["95%", "faster recovery", "Restored critical onboarding services under pressure."],
+  ["Millions", "transactions daily", "Backend services for high-traffic payment systems."],
 ];
 
 export default function HomePage() {
@@ -114,6 +128,7 @@ export default function HomePage() {
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">Explore my impact <span>↓</span></a>
+            <a className="button button-secondary" href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">View résumé <span>↗</span></a>
           </div>
           <div className="profile-links" aria-label="Professional profiles">
             <span>Find me online</span>
@@ -191,6 +206,20 @@ export default function HomePage() {
             </article>
           ))}
         </div>
+
+        <div className="scale-heading">
+          <p className="section-number">Impact at scale</p>
+          <h3>Measured in outcomes,<br />not activity.</h3>
+        </div>
+        <div className="scale-grid">
+          {scaleMetrics.map(([value, label, detail]) => (
+            <article key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+              <p>{detail}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="case-study">
@@ -243,6 +272,7 @@ export default function HomePage() {
         <div className="capabilities-title"><p className="section-number light">04 / Toolkit</p><h2>Tools change.<br /><em>Judgment compounds.</em></h2></div>
         <div className="capability-list">
           {capabilities.map(([title, tools], index) => <div key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{tools}</p></div>)}
+          <div className="education-row"><span>07</span><h3>Education</h3><p>BE, Information Technology · Chandigarh University · 2019–2023</p></div>
         </div>
       </section>
 
@@ -267,7 +297,7 @@ export default function HomePage() {
         </div>
         <div className="footer-bottom">
           <p>© 2026 Zaid Ali</p>
-          <div><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
+          <div><a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
         </div>
       </footer>
     </main>

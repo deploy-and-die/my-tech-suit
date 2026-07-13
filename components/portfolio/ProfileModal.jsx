@@ -66,11 +66,12 @@ export function ProfileModal() {
 
             <div className="modal-strengths">
               <p>Core strengths</p>
-              <div><span>Backend systems</span><span>Product ownership</span><span>Fintech reliability</span><span>API architecture</span></div>
+              <div><span>Distributed systems</span><span>Product ownership</span><span>Fintech reliability</span><span>Python &amp; Rust</span></div>
             </div>
 
             <div className="modal-actions">
               <a className="modal-primary" href="mailto:zaidali753@gmail.com">Email Zaid ↗</a>
+              <a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a>
               <a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
               <a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub ↗</a>
               <a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium ↗</a>
