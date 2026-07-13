@@ -82,10 +82,10 @@ const experience = [
 const capabilities = [
   ["Languages & services", "Python · Rust · Actix · Django · FastAPI · REST"],
   ["Architecture", "Clean architecture · Distributed systems · Microservices · Event-driven design"],
-  ["Reliability & security", "Idempotency · Retries · Reconciliation · Feature flags · Data privacy"],
+  ["Reliability & security", "High availability · Scalability · Idempotency · Retries · Reconciliation · OAuth 2.0"],
   ["Data & pipelines", "PostgreSQL · SQL · Redis · BigQuery · ClickHouse · ETL"],
-  ["Cloud & delivery", "Kafka · Docker · Jenkins · AWS · Azure"],
-  ["Observability & leadership", "Kibana · Logging · Monitoring · Code reviews · Technical leadership"],
+  ["Cloud & delivery", "Kafka · Docker · Jenkins · CI/CD · AWS · Azure"],
+  ["Observability & leadership", "Kibana · Logging · Monitoring · Incident response · Code reviews · Technical leadership"],
 ];
 
 const scaleMetrics = [
@@ -135,7 +135,7 @@ export default function HomePage() {
           <div className="profile-links" aria-label="Professional profiles">
             <span>Find me online</span>
             <a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-            <a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub ↗</a>
             <a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium ↗</a>
           </div>
         </div>
@@ -191,6 +191,11 @@ export default function HomePage() {
           <div className="revamp-visual" aria-label="Product durability model">
             <div className="orbit orbit-one"><span>Durability</span></div>
             <div className="orbit orbit-two"><span>Availability</span></div>
+            <span className="revamp-key key-scalability">Scalability</span>
+            <span className="revamp-key key-observability">Observability</span>
+            <span className="revamp-key key-security">Security</span>
+            <span className="revamp-key key-performance">Performance</span>
+            <span className="revamp-key key-operations">Operational excellence</span>
             <div className="orbit-core">OWN<br />THE<br />OUTCOME</div>
           </div>
         </article>
@@ -299,7 +304,7 @@ export default function HomePage() {
         </div>
         <div className="footer-bottom">
           <p>© 2026 Zaid Ali</p>
-          <div><a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
+          <div><a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
         </div>
       </footer>
     </main>

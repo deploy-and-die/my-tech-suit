@@ -74,7 +74,7 @@ export function ProfileModal() {
               <a className="modal-primary" href="mailto:zaidali753@gmail.com">Email Zaid ↗</a>
               <a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a>
               <a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-              <a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub ↗</a>
+              <a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub ↗</a>
               <a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium ↗</a>
             </div>
           </section>
