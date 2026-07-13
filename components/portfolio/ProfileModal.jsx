@@ -49,10 +49,13 @@ export function ProfileModal() {
               Close ×
             </button>
 
-            <div className="modal-intro">
-              <p>Backend Engineer · Bengaluru, India</p>
-              <h2 id="profile-modal-title">Zaid Ali</h2>
-              <span>Backend-focused engineer building durable fintech and AI accounting products.</span>
+            <div className="modal-identity">
+              <img alt="Zaid Ali" src="/images/zaid-backend-engineer.png" />
+              <div className="modal-intro">
+                <p>Backend Engineer · Bengaluru, India</p>
+                <h2 id="profile-modal-title">Zaid Ali</h2>
+                <span>Backend-focused engineer building durable fintech and AI accounting products.</span>
+              </div>
             </div>
 
             <div className="modal-stats">

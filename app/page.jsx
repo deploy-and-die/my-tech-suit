@@ -123,6 +123,15 @@ export default function HomePage() {
           </div>
         </div>
         <div className="hero-proof reveal delay-1">
+          <div className="portrait-shell">
+            <img
+              alt="Zaid Ali, Backend Engineer"
+              decoding="async"
+              fetchPriority="high"
+              src="/images/zaid-backend-engineer.png"
+            />
+            <div><span>Zaid Ali</span><strong>Backend Engineer</strong></div>
+          </div>
           <p className="proof-label">Production proof, not buzzwords</p>
           <div className="proof-stat featured">
             <strong>4<sup>+</sup></strong>

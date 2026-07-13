@@ -34,8 +34,10 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .modal-backdrop { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 1rem; background: rgba(1,5,13,.82); backdrop-filter: blur(10px); animation: modal-fade .2s both; }
 .profile-modal { position: relative; width: min(680px, 100%); max-height: calc(100vh - 2rem); overflow-y: auto; background: var(--paper); border: 1px solid rgba(255,255,255,.25); padding: clamp(1.6rem, 5vw, 3.5rem); box-shadow: 0 30px 100px rgba(0,0,0,.4); animation: modal-rise .3s both; }
 .modal-close { position: absolute; right: 1.2rem; top: 1.2rem; border: 1px solid rgba(148,174,210,.25); border-radius: 99px; background: transparent; padding: .55rem .8rem; color: var(--ink); cursor: pointer; text-transform: uppercase; letter-spacing: .1em; font-size: .62rem; font-weight: 800; }
+.modal-identity { display: grid; grid-template-columns: 112px 1fr; gap: 1.5rem; align-items: end; padding-right: 4.5rem; }
+.modal-identity > img { width: 112px; height: 138px; object-fit: cover; object-position: center 24%; border: 1px solid rgba(96,168,255,.35); background: #071226; }
 .modal-intro > p, .modal-strengths > p { color: #70b3ff; text-transform: uppercase; letter-spacing: .14em; font-size: .65rem; font-weight: 800; }
-.modal-intro h2 { margin: 1.4rem 0 .7rem; font: 500 clamp(3rem, 9vw, 5.5rem)/.85 Georgia, serif; letter-spacing: -.06em; }
+.modal-intro h2 { margin: .8rem 0 .5rem; font: 500 clamp(3rem, 9vw, 5.5rem)/.85 Georgia, serif; letter-spacing: -.06em; }
 .modal-intro > span { display: block; max-width: 500px; color: var(--muted); line-height: 1.6; }
 .modal-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 2rem 0; border: 1px solid rgba(148,174,210,.18); }
 .modal-stats div { padding: 1.2rem; border-right: 1px solid rgba(148,174,210,.18); }
@@ -71,6 +73,12 @@ h1 em, h2 em, footer em { font-weight: 400; color: #57a3ff; }
 .profile-links a { padding-bottom: .25rem; border-bottom: 1px solid rgba(148,174,210,.28); transition: color .2s, border-color .2s; }
 .profile-links a:hover { color: #57a3ff; border-color: #57a3ff; }
 .hero-proof { border-left: 1px solid rgba(148,174,210,.18); padding-left: 2.5rem; }
+.portrait-shell { position: relative; height: clamp(280px, 35vw, 450px); margin: 0 0 2rem; overflow: hidden; border: 1px solid rgba(96,168,255,.28); background: #071226; box-shadow: 0 24px 80px rgba(0,55,145,.25); }
+.portrait-shell::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(3,10,22,.82), transparent 42%); pointer-events: none; }
+.portrait-shell img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; filter: saturate(.92) contrast(1.03); }
+.portrait-shell > div { position: absolute; z-index: 1; left: 1rem; right: 1rem; bottom: 1rem; display: flex; justify-content: space-between; align-items: end; gap: 1rem; text-transform: uppercase; }
+.portrait-shell span { color: #fff; font: 500 1.5rem Georgia, serif; letter-spacing: -.03em; text-transform: none; }
+.portrait-shell strong { color: #70b3ff; font-size: .6rem; letter-spacing: .14em; }
 .proof-label { font-size: .69rem; text-transform: uppercase; letter-spacing: .16em; font-weight: 800; color: var(--muted); }
 .proof-stat { padding: 1.5rem 0; display: flex; flex-direction: column; gap: .35rem; }
 .proof-stat strong { font: 500 clamp(2.2rem, 4vw, 4.4rem)/1 Georgia, serif; letter-spacing: -.05em; }
@@ -233,6 +241,9 @@ footer { background: #02050b; color: var(--ink); padding: clamp(4rem, 8vw, 8rem)
   .footer-bottom { gap: 1.5rem; flex-direction: column; }
   .footer-bottom div { flex-wrap: wrap; }
   .profile-trigger { right: 1rem; bottom: 1rem; }
+  .modal-identity { grid-template-columns: 76px 1fr; gap: 1rem; padding-right: 0; align-items: center; }
+  .modal-identity > img { width: 76px; height: 96px; }
+  .modal-intro h2 { font-size: 2.8rem; }
   .modal-stats { grid-template-columns: 1fr; }
   .modal-stats div { border-right: 0; border-bottom: 1px solid rgba(148,174,210,.18); }
   .modal-actions { grid-template-columns: 1fr 1fr; }
