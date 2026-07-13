@@ -104,12 +104,12 @@ export default function HomePage() {
       <section className="hero" id="top">
         <div className="hero-grid" aria-hidden="true" />
         <div className="hero-copy reveal">
-          <p className="eyebrow"><span /> Senior Software Engineer · Fintech &amp; AI</p>
+          <p className="eyebrow"><span /> Backend Engineer · Fintech &amp; AI</p>
           <h1>
-            I build financial systems that stay <em>correct</em> when the pressure arrives.
+            <em>Backend engineer</em> for financial systems that stay correct when the pressure arrives.
           </h1>
           <p className="hero-intro">
-            I’m Zaid Ali—a backend-focused engineer with 4+ years of experience turning complex
+            I’m Zaid Ali—a backend engineer with 4+ years of experience turning complex
             accounting and payment workflows into durable, production-ready products.
           </p>
           <div className="hero-actions">

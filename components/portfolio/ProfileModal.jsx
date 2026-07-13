@@ -50,7 +50,7 @@ export function ProfileModal() {
             </button>
 
             <div className="modal-intro">
-              <p>Senior Software Engineer · Bengaluru, India</p>
+              <p>Backend Engineer · Bengaluru, India</p>
               <h2 id="profile-modal-title">Zaid Ali</h2>
               <span>Backend-focused engineer building durable fintech and AI accounting products.</span>
             </div>
