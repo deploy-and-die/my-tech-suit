@@ -204,7 +204,7 @@ export default function HomePage() {
             </p>
           </div>
           <div className="case-metrics">
-            <div><strong>26 → 15</strong><span>queries per measured bank-statement request</span></div>
+            <div><strong>26 → 10</strong><span>queries per measured bank-statement request</span></div>
             <div><strong>0</strong><span>failures across 500-concurrency load tests</span></div>
             <div><strong>20</strong><span>default cursor-paginated page size</span></div>
           </div>
