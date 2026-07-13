@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 export function ProfileModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ export function ProfileModal() {
         <strong>Quick profile</strong>
       </button>
 
-      {isOpen ? (
+      {isOpen ? createPortal(
         <div className="modal-backdrop" role="presentation" onMouseDown={() => setIsOpen(false)}>
           <section
             aria-labelledby="profile-modal-title"
@@ -77,7 +78,8 @@ export function ProfileModal() {
               <a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium ↗</a>
             </div>
           </section>
-        </div>
+        </div>,
+        document.body,
       ) : null}
     </>
   );

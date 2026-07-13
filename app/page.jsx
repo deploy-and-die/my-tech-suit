@@ -109,11 +109,13 @@ export default function HomePage() {
           <a href="#experience">Experience</a>
           <a href="#writing">Writing</a>
         </div>
-        <a className="nav-cta" href="mailto:zaidali753@gmail.com">
-          Let’s talk <span aria-hidden="true">↗</span>
-        </a>
+        <div className="nav-actions">
+          <ProfileModal />
+          <a className="nav-cta" href="mailto:zaidali753@gmail.com">
+            Let’s talk <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </nav>
-      <ProfileModal />
 
       <section className="hero" id="top">
         <div className="hero-grid" aria-hidden="true" />
