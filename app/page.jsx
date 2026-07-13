@@ -1,3 +1,5 @@
+import { ProfileModal } from "@/components/portfolio/ProfileModal";
+
 const releases = [
   {
     number: "01",
@@ -97,6 +99,7 @@ export default function HomePage() {
           Let’s talk <span aria-hidden="true">↗</span>
         </a>
       </nav>
+      <ProfileModal />
 
       <section className="hero" id="top">
         <div className="hero-grid" aria-hidden="true" />
