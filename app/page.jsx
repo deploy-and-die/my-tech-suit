@@ -206,7 +206,7 @@ export default function HomePage() {
           <div className="case-metrics">
             <div><strong>26 → 10</strong><span>queries per measured bank-statement request</span></div>
             <div><strong>0</strong><span>failures across 500-concurrency load tests</span></div>
-            <div><strong>20</strong><span>default cursor-paginated page size</span></div>
+            <div><strong>High traffic</strong><span>sustained throughput under high concurrency</span></div>
           </div>
           <div className="case-flow">
             <p>New engineering path</p>
