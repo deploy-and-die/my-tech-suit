@@ -111,7 +111,12 @@ export default function HomePage() {
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">Explore my impact <span>↓</span></a>
-            <a className="button button-secondary" href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+          </div>
+          <div className="profile-links" aria-label="Professional profiles">
+            <span>Find me online</span>
+            <a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium ↗</a>
           </div>
         </div>
         <div className="hero-proof reveal delay-1">
@@ -250,7 +255,7 @@ export default function HomePage() {
         </div>
         <div className="footer-bottom">
           <p>© 2026 Zaid Ali</p>
-          <div><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
+          <div><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/deploy-and-die" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
         </div>
       </footer>
     </main>
