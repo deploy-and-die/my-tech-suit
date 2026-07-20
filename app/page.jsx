@@ -1,4 +1,6 @@
 import { ProfileModal } from "@/components/portfolio/ProfileModal";
+import { ExperienceTimeline } from "@/components/portfolio/ExperienceTimeline";
+import { SkillsShowcase } from "@/components/portfolio/SkillsShowcase";
 
 const releases = [
   {
@@ -43,7 +45,7 @@ const experience = [
       "Took engineering ownership of a complete product revamp—raising the bar for durability, availability, maintainability, and release quality.",
       "Released multi-user workflows, Journal Voucher flows, the Billing module, and SSO + OAuth capabilities across the product.",
       "Automated PDF, Excel, and image bank-statement ingestion—cutting manual effort 70%, reaching 98% accuracy, and improving onboarding 40%.",
-      "Built real-time, bi-directional Tally sync with idempotency, retries, and reconciliation; the connector drove 3× adoption across 500+ users.",
+      "Built real-time, bi-directional Tally sync with idempotency, retries, and reconciliation; the connector drove 3× adoption across 1,000+ users.",
       "Migrated 50 GB+ of production data without service interruption and delivered prepaid-card flows handling ₹95L+ monthly GTV.",
       "Improved onboarding incident recovery by 95%, raised test coverage to 80%, and reduced service failures by 50%.",
     ],
@@ -79,19 +81,10 @@ const experience = [
   },
 ];
 
-const capabilities = [
-  ["Languages & services", "Python · Rust · Actix · Django · FastAPI · REST"],
-  ["Architecture", "Clean architecture · Distributed systems · Microservices · Event-driven design"],
-  ["Reliability & security", "High availability · Scalability · Idempotency · Retries · Reconciliation · OAuth 2.0"],
-  ["Data & pipelines", "PostgreSQL · SQL · Redis · BigQuery · ClickHouse · ETL"],
-  ["Cloud & delivery", "Kafka · Docker · Jenkins · CI/CD · AWS · Azure"],
-  ["Observability & leadership", "Kibana · Logging · Monitoring · Incident response · Code reviews · Technical leadership"],
-];
-
 const scaleMetrics = [
   ["70%", "less manual effort", "Automated multi-format bank-statement ingestion."],
   ["98%", "parsing accuracy", "Improved confidence in AI accounting onboarding."],
-  ["3×", "user adoption", "Tally connector supporting 500+ active users."],
+  ["3×", "user adoption", "Tally connector supporting 1,000+ active users."],
   ["50 GB+", "data migrated", "Moved production data without service interruption."],
   ["95%", "faster recovery", "Restored critical onboarding services under pressure."],
   ["Millions", "transactions daily", "Backend services for high-traffic payment systems."],
@@ -107,6 +100,7 @@ export default function HomePage() {
         <div className="nav-links">
           <a href="#work">Work</a>
           <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
           <a href="#writing">Writing</a>
         </div>
         <div className="nav-actions">
@@ -130,7 +124,7 @@ export default function HomePage() {
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#work">Explore my impact <span>↓</span></a>
-            <a className="button button-secondary" href="/Syed_Zaid_Ali_Resume.pdf?v=20260714-4" target="_blank" rel="noreferrer">View résumé <span>↗</span></a>
+            <a className="button button-secondary" href="/Syed_Zaid_Ali_Resume.pdf?v=20260721-2" target="_blank" rel="noreferrer">View résumé <span>↗</span></a>
           </div>
           <div className="profile-links" aria-label="Professional profiles">
             <span>Find me online</span>
@@ -261,27 +255,10 @@ export default function HomePage() {
           <p className="section-number">03 / Experience</p>
           <h2>Four years of increasing<br /><em>scope and ownership.</em></h2>
         </div>
-        <div className="timeline">
-          {experience.map((job, index) => (
-            <article className="job" key={`${job.company}-${job.role}`}>
-              <div className="job-index">0{index + 1}</div>
-              <div className="job-meta"><span>{job.period}</span><small>{job.domain}</small></div>
-              <div className="job-main">
-                <h3>{job.role}</h3><p className="company">{job.company}</p><p className="job-summary">{job.summary}</p>
-                <ul>{job.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ExperienceTimeline experience={experience} />
       </section>
 
-      <section className="capabilities-section">
-        <div className="capabilities-title"><p className="section-number light">04 / Toolkit</p><h2>Tools change.<br /><em>Judgment compounds.</em></h2></div>
-        <div className="capability-list">
-          {capabilities.map(([title, tools], index) => <div key={title}><span>0{index + 1}</span><h3>{title}</h3><p>{tools}</p></div>)}
-          <div className="education-row"><span>07</span><h3>Education</h3><p>BE, Information Technology · Chandigarh University · 2019–2023</p></div>
-        </div>
-      </section>
+      <SkillsShowcase />
 
       <section className="section writing-section" id="writing">
         <div className="writing-card">
@@ -304,7 +281,7 @@ export default function HomePage() {
         </div>
         <div className="footer-bottom">
           <p>© 2026 Zaid Ali</p>
-          <div><a href="/Syed_Zaid_Ali_Resume.pdf?v=20260714-4" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
+          <div><a href="/Syed_Zaid_Ali_Resume.pdf?v=20260721-2" target="_blank" rel="noreferrer">Résumé</a><a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn</a><a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub</a><a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium</a><a href="#top">Back to top ↑</a></div>
         </div>
       </footer>
     </main>

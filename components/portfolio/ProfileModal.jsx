@@ -51,7 +51,7 @@ export function ProfileModal() {
             </button>
 
             <div className="modal-identity">
-              <img alt="Zaid Ali" src="/images/zaid-backend-engineer.png" />
+              <img alt="Zaid Ali" src="/images/zaid-backend-engineer.png?v=20260714-2" />
               <div className="modal-intro">
                 <p>Backend Engineer · Bengaluru, India</p>
                 <h2 id="profile-modal-title">Zaid Ali</h2>
@@ -72,7 +72,7 @@ export function ProfileModal() {
 
             <div className="modal-actions">
               <a className="modal-primary" href="mailto:zaidali753@gmail.com">Email Zaid ↗</a>
-              <a href="/Syed_Zaid_Ali_Resume.pdf" target="_blank" rel="noreferrer">Résumé ↗</a>
+              <a href="/Syed_Zaid_Ali_Resume.pdf?v=20260721-2" target="_blank" rel="noreferrer">Résumé ↗</a>
               <a href="https://www.linkedin.com/in/zaid-ali-b409501a4/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
               <a href="https://github.com/compile-and-cry" target="_blank" rel="noreferrer">GitHub ↗</a>
               <a href="https://medium.com/@zaidali753" target="_blank" rel="noreferrer">Medium ↗</a>
