@@ -43,7 +43,8 @@ def bullet(text, styles):
 
 def impact_item(number, title, text, styles):
     return Paragraph(
-        f"<font color='#176EDB' size='10.8'><b>{number} / {title}</b></font><br/>{text}",
+        f"<font color='#176EDB'><b>{number}</b></font>  <b>{title}</b><br/>"
+        f"<font color='#526174'>{text}</font>",
         styles["impact"],
     )
 
@@ -60,7 +61,7 @@ def build_resume():
         bottomMargin=7 * mm,
         title="Syed Zaid Ali - Backend Engineer Resume",
         author="Syed Zaid Ali",
-        subject="Backend Engineer with 4+ years in FinTech and AI accounting",
+        subject="Software Engineer with 4+ years in backend systems, FinTech, and AI accounting",
     )
 
     base = getSampleStyleSheet()
@@ -118,8 +119,8 @@ def build_resume():
             "ImpactSection",
             parent=base["Heading2"],
             fontName="Helvetica-Bold",
-            fontSize=11.2,
-            leading=13.2,
+            fontSize=8.6,
+            leading=10,
             textColor=BLUE,
             spaceAfter=0,
         ),
@@ -127,10 +128,12 @@ def build_resume():
             "Impact",
             parent=base["Normal"],
             fontName="Helvetica",
-            fontSize=9.5,
-            leading=12.7,
+            fontSize=8.65,
+            leading=10.9,
             textColor=NAVY,
-            spaceAfter=4.5,
+            leftIndent=22,
+            firstLineIndent=-22,
+            spaceAfter=3.5,
         ),
         "body": ParagraphStyle(
             "Body",
@@ -173,7 +176,7 @@ def build_resume():
 
     story = [
         Paragraph("Syed Zaid Ali", styles["name"]),
-        Paragraph("BACKEND ENGINEER  |  FINTECH  |  AI ACCOUNTING", styles["headline"]),
+        Paragraph("SOFTWARE ENGINEER  |  BACKEND SYSTEMS  |  FINTECH &amp; AI", styles["headline"]),
         Paragraph(
             "+91 9900713753  |  "
             '<a href="mailto:zaidali753@gmail.com" color="#176EDB">zaidali753@gmail.com</a>  |  '
@@ -191,72 +194,70 @@ def build_resume():
     story += section("Professional Summary", styles, space_before=0)
     story.append(
         Paragraph(
-            "Backend Engineer with 4+ years building scalable REST APIs, distributed systems, and high-volume payment platforms for FinTech and AI products. Hands-on with Python, Django, FastAPI, Rust, Actix, SQL, Redis, AWS, and Azure; experienced in system design, data modeling, event-driven architecture, high availability, observability, operational excellence, and production ownership.",
+            "Software Engineer with 4+ years building and owning production backend systems for fintech and AI accounting. Led the MDS API architecture revamp and delivered workflows used by 1,000+ users; improved incident recovery 95%, reduced service failures 50%, and raised automated test coverage to 80%. Strong in Python, Django, FastAPI, Rust, PostgreSQL, distributed systems, AWS, and Azure.",
             styles["body"],
         )
     )
 
     story += [
-        Spacer(1, 6),
-        Paragraph("SELECTED ENGINEERING IMPACT", styles["impact_section"]),
-        HRFlowable(width="100%", thickness=0.9, color=LIGHT, spaceBefore=2, spaceAfter=6),
+        Spacer(1, 5),
+        Paragraph("CAREER HIGHLIGHTS", styles["impact_section"]),
+        HRFlowable(width="100%", thickness=0.7, color=LIGHT, spaceBefore=2, spaceAfter=5.5),
     ]
     impact_bullets = [
         (
             "01",
-            "PRODUCTION REVAMP & SERVICE REWRITE",
-            "Led the MDS API production revamp and service rewrite, separating HTTP boundaries from service-owned workflows and query orchestration for safer releases and long-term maintainability.",
+            "Product architecture ownership",
+            "Led the MDS API production revamp, redefining service boundaries, query ownership, and rollout controls for safer releases.",
         ),
         (
             "02",
-            "SYSTEM DESIGN & ENGINEERING FOUNDATIONS",
-            "Led the product's backend system-design revamp and resolved major engineering issues across service boundaries, query ownership, database access, rollout safety, testability, and observability.",
+            "Adoption at scale",
+            "Drove 3x adoption across 1,000+ users through real-time, bi-directional Tally synchronization with idempotency, retries, and reconciliation.",
         ),
         (
             "03",
-            "PRODUCTION READINESS",
-            "Raised production readiness with feature-flagged rollout, Swagger and Postman validation, positive and negative API tests, and database-connection profiling under load.",
+            "Production resilience",
+            "Cut incident recovery time 95% and service failures 50%; raised unit and integration test coverage to 80%.",
         ),
     ]
     story.extend(impact_item(*item, styles) for item in impact_bullets)
 
     story += section("Experience", styles)
-    story.append(role_header("SDE II", "Karbon Business", "Oct 2024 - Present", styles))
+    story.append(role_header("Software Development Engineer II (SDE II)", "Karbon Business", "Oct 2024 - Present", styles))
     karbon_bullets = [
-        "Led engineering ownership of a product revamp and service rewrite, improving high availability, scalability, maintainability, observability, and release quality.",
-        "Released Multi-user Flow, Journal Voucher Flow, Billing Module, and SSO + OAuth 2.0 with authentication and authorization controls.",
-        "Spearheaded FinBox bank-statement ingestion across PDF, Excel, and images; reduced manual effort 70%, achieved 98% accuracy, and improved onboarding 40%.",
-        "Built real-time Tally APIs and a Windows connector for bi-directional AP, AR, and journal-voucher sync with idempotency, retries, and reconciliation; drove 3x adoption across 1,000+ users.",
-        "Redesigned Django service boundaries and REST API contracts; added Swagger documentation, Postman validation flows, positive and negative API tests, and feature-flagged rollout controls.",
-        "Optimized database access for high throughput, standardized cursor pagination, and profiled connection behavior under concurrency to improve production readiness.",
-        "Led incident response for critical onboarding services, cutting recovery time 95%; raised automated test coverage to 80% and reduced failures 50%.",
+        "Improved availability, maintainability, and release safety by leading the MDS API system-design revamp, separating HTTP boundaries from service-owned workflows, and driving architecture and code reviews.",
+        "Reduced bank-statement processing effort 70%, achieved 98% parsing accuracy, and improved onboarding 40% by building FinBox ingestion for PDF, Excel, and image inputs.",
+        "Drove 3x adoption across 1,000+ users by building real-time, bi-directional Tally APIs and a Windows connector with idempotency, retries, and reconciliation.",
+        "Cut onboarding incident recovery time 95% and service failures 50% by leading root-cause analysis, strengthening observability, and shipping preventive fixes; raised unit and integration test coverage to 80%.",
+        "Improved API throughput and database efficiency by moving filtering and pagination into querysets, standardizing cursor pagination, and profiling query and connection behavior under high concurrency.",
+        "Expanded enterprise readiness by shipping Multi-user Flow, Journal Voucher Flow, Billing Module, and SSO + OAuth 2.0 with authorization controls, feature flags, and API documentation.",
     ]
     story.extend(bullet(item, styles) for item in karbon_bullets)
 
     story.append(Spacer(1, 1.5))
     story.append(role_header("Backend Engineer", "Juspay", "Sep 2022 - May 2024", styles))
     juspay_bullets = [
-        "Owned system design and production operations for reconciliation microservices processing millions of payment transactions daily.",
-        "Led service refactoring that improved maintainability and engineering efficiency by 40%, strengthening modularity, testability, and release confidence.",
-        "Built reusable APIs, cron jobs, ETL pipelines, and merchant integrations for automated reconciliation and financial-data workflows.",
-        "Reduced integration latency by 30% through API design, performance optimization, and cross-functional delivery.",
-        "Built CI/CD automation with Docker and Jenkins, accelerating releases 50% while keeping production downtime below 1%.",
+        "Sustained reconciliation of millions of payment transactions daily by owning the design, implementation, deployment, monitoring, and production support of distributed microservices.",
+        "Improved maintainability and engineering efficiency 40% by refactoring service components, reviewing code, and standardizing reusable APIs, cron jobs, and ETL workflows.",
+        "Reduced merchant integration latency 30% by redesigning API and data-access paths and coordinating delivery across product and engineering teams.",
+        "Accelerated releases 50% while keeping production downtime below 1% by implementing CI/CD automation with Docker and Jenkins.",
     ]
     story.extend(bullet(item, styles) for item in juspay_bullets)
 
     story.append(Spacer(1, 1.5))
     story.append(role_header("Technical Product Analyst Intern", "Juspay", "Feb 2022 - Aug 2022", styles))
     intern_bullets = [
-        "Architected a Kafka-based real-time logging pipeline and Kibana-style monitoring dashboard, strengthening observability and operational insight.",
-        "Used customer feedback to accelerate product iterations 25% and improved data-collection accuracy to 95%.",
+        "Improved production visibility by architecting a Kafka-based real-time logging pipeline and Kibana-style monitoring dashboard.",
+        "Accelerated product iteration 25% and improved data-collection accuracy to 95% by translating customer feedback into measurable workflow changes.",
     ]
     story.extend(bullet(item, styles) for item in intern_bullets)
 
     story += section("Technical Skills", styles)
     story.append(Paragraph("<b>Languages & APIs:</b> Python, Rust, Actix, Django, FastAPI, REST APIs  |  <b>Data:</b> PostgreSQL, SQL, Redis, BigQuery, ClickHouse, ETL", styles["skills"]))
-    story.append(Paragraph("<b>Architecture & reliability:</b> Distributed systems, microservices, clean architecture, event-driven architecture, high availability, scalability, idempotency, retries, reconciliation", styles["skills"]))
-    story.append(Paragraph("<b>Cloud & operations:</b> Kafka, Docker, Jenkins, CI/CD, AWS, Azure, Kibana, logging, monitoring, automated testing, incident response, security, data privacy, technical leadership, cross-functional collaboration, code reviews, JIRA", styles["skills"]))
-    story.append(Paragraph("<b>AI-assisted engineering:</b> Cursor, OpenAI Codex, Claude, generative AI, LLM-assisted development, prompt engineering, AI pair programming, code generation, debugging, test generation, documentation, code review, rapid prototyping, vibe coding", styles["skills"]))
+    story.append(Paragraph("<b>Architecture & reliability:</b> Distributed systems, microservices, object-oriented design, design patterns, event-driven architecture, high availability, scalability, idempotency, retries, reconciliation", styles["skills"]))
+    story.append(Paragraph("<b>Delivery & engineering:</b> Kafka, Docker, Jenkins, CI/CD, AWS, Azure, Git, GitHub, unit and integration testing, technical design documents, code and architecture reviews, mentoring, root-cause analysis, SDLC, Agile", styles["skills"]))
+    story.append(Paragraph("<b>AI developer tools:</b> Cursor, OpenAI Codex, Claude, prompt engineering, test generation, code review, technical documentation, rapid prototyping", styles["skills"]))
 
     story += section("Education", styles)
     story.append(Paragraph("<b>BE, Information Technology</b>  |  Chandigarh University, India  |  2019 - 2023", styles["body"]))
