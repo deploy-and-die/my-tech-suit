@@ -72,12 +72,12 @@ export function Sidebar() {
 
   return (
     <>
-      <header className="flex w-full items-center justify-between border-b border-white/70 bg-white/80 px-6 py-4 text-ink lg:hidden">
+      <header className="flex w-full items-center justify-between border-b border-white/10 bg-[#0b1020]/90 px-6 py-4 text-white shadow-[0_12px_35px_rgba(15,23,42,0.45)] backdrop-blur lg:hidden">
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Explore</p>
+          <p className="text-xs uppercase tracking-[0.4em] text-white/50">Explore</p>
         </div>
         <button
-          className="rounded-full border border-white/70 bg-[#27187e] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white"
+          className="rounded-full border border-white/10 bg-gradient-to-r from-[#7c3aed] via-[#6d28d9] to-[#5b21b6] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-white shadow-[0_12px_30px_rgba(88,28,135,0.55)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_45px_rgba(88,28,135,0.7)]"
           onClick={() => setIsOpen(true)}
           type="button"
         >
@@ -85,15 +85,18 @@ export function Sidebar() {
         </button>
       </header>
       {isOpen ? (
-        <div className="fixed inset-0 z-40 bg-ink/40 lg:hidden" onClick={() => setIsOpen(false)}>
+        <div
+          className="fixed inset-0 z-40 bg-slate-950/70 backdrop-blur-sm lg:hidden"
+          onClick={() => setIsOpen(false)}
+        >
           <aside
-            className="h-full w-72 border-r border-white/70 bg-[#27187e] px-6 py-10 text-white shadow-soft"
+            className="h-full w-80 border-r border-white/10 bg-gradient-to-b from-[#0b1020] via-[#141a33] to-[#1f1d4d] px-6 py-10 text-white shadow-[0_25px_60px_rgba(9,12,28,0.7)]"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <p className="text-sm uppercase tracking-[0.2em] text-white/70">Explore</p>
+              <p className="text-sm uppercase tracking-[0.4em] text-white/60">Explore</p>
               <button
-                className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70"
+                className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60 transition hover:text-white"
                 onClick={() => setIsOpen(false)}
                 type="button"
               >
@@ -102,18 +105,18 @@ export function Sidebar() {
             </div>
             <div className="mt-8 space-y-8">
               <nav className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/45">
                   Primary
                 </p>
-                <ul className="space-y-4 text-lg font-semibold">
+                <ul className="space-y-3 text-lg font-semibold">
                   {primaryLinks.map((link) => (
                     <li key={link.href}>
                       <Link
-                        className="group flex items-center gap-3 text-white/90 transition hover:text-[#ffd6ff]"
+                        className="group flex items-center gap-3 rounded-full border border-white/5 bg-white/5 px-4 py-2.5 text-white/90 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] transition hover:border-white/20 hover:bg-white/10 hover:text-white"
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition group-hover:bg-white group-hover:text-slate-900">
                           {link.icon}
                         </span>
                         {link.label}
@@ -123,18 +126,18 @@ export function Sidebar() {
                 </ul>
               </nav>
               <nav className="space-y-3">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+                <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/35">
                   Don’t Look Here
                 </p>
                 <ul className="space-y-3 text-base text-white/70">
                   {secondaryLinks.map((link) => (
                     <li key={link.href}>
                       <Link
-                        className="group flex items-center gap-3 transition text-white/80 hover:text-[#ffd6ff]"
+                        className="group flex items-center gap-3 rounded-full border border-white/5 px-4 py-2.5 text-white/75 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
                         href={link.href}
                         onClick={() => setIsOpen(false)}
                       >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition group-hover:bg-white group-hover:text-slate-900">
                           {link.icon}
                         </span>
                         {link.label}
@@ -148,8 +151,8 @@ export function Sidebar() {
         </div>
       ) : null}
       <aside
-        className={`relative hidden border-r border-white/70 bg-[#27187e] px-6 py-10 text-white transition-all duration-300 lg:block lg:sticky lg:top-0 lg:h-screen ${
-          isExpanded ? "w-72" : "w-[7.5rem]"
+        className={`relative hidden border-r border-white/10 bg-gradient-to-b from-[#0b1020] via-[#141a33] to-[#1f1d4d] px-6 py-10 text-white shadow-[0_35px_70px_rgba(9,12,28,0.65)] transition-all duration-300 lg:block lg:sticky lg:top-0 lg:h-screen ${
+          isExpanded ? "w-80" : "w-[7.5rem]"
         }`}
         onMouseEnter={handleInteractionStart}
         onMouseLeave={handleInteractionEnd}
@@ -161,7 +164,7 @@ export function Sidebar() {
             <button
               aria-expanded={isExpanded}
               aria-label={isExpanded ? "Collapse navigation" : "Expand navigation"}
-              className={`relative flex w-full items-center justify-center rounded-full border border-white/70 bg-white text-xs font-semibold uppercase tracking-[0.35em] text-ink shadow-soft transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
+              className={`relative flex w-full items-center justify-center rounded-full border border-white/15 bg-white/95 text-xs font-semibold uppercase tracking-[0.4em] text-slate-900 shadow-[0_18px_45px_rgba(15,23,42,0.4)] transition hover:-translate-y-0.5 hover:bg-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${
                 isExpanded ? "py-5" : "py-4"
               }`}
               onClick={handleToggle}
@@ -193,7 +196,7 @@ export function Sidebar() {
                 }`}
                 aria-hidden={isExpanded}
               >
-                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/70 bg-white/90 text-ink shadow-sm">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/40 bg-white text-slate-900 shadow-sm">
                   <svg
                     className="h-4 w-4"
                     fill="none"
@@ -216,34 +219,40 @@ export function Sidebar() {
             }`}
           >
             <nav className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/45">
                 Primary
               </p>
-              <ul className="space-y-4 text-lg font-semibold">
+              <ul className="space-y-3 text-lg font-semibold">
                 {primaryLinks.map((link) => (
                   <li key={link.href}>
-                  <Link className="group flex items-center gap-3 text-white/90 transition hover:text-[#ffd6ff]" href={link.href}>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
-                      {link.icon}
-                    </span>
-                    {link.label}
+                    <Link
+                      className="group flex items-center gap-3 rounded-full border border-white/5 bg-white/5 px-4 py-2.5 text-white/90 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.02)] transition hover:border-white/20 hover:bg-white/10 hover:text-white"
+                      href={link.href}
+                    >
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition group-hover:bg-white group-hover:text-slate-900">
+                        {link.icon}
+                      </span>
+                      {link.label}
                     </Link>
                   </li>
                 ))}
               </ul>
             </nav>
             <nav className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+              <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/35">
                 Don’t Look Here
               </p>
               <ul className="space-y-3 text-base text-white/70">
                 {secondaryLinks.map((link) => (
                   <li key={link.href}>
-                  <Link className="group flex items-center gap-3 text-white/80 transition hover:text-[#ffd6ff]" href={link.href}>
-                    <span className="flex h-9 w-9 items-center justify-center rounded-2xl bg-white/20 text-white transition group-hover:bg-white/40 group-hover:text-[#27187e]">
-                      {link.icon}
-                    </span>
-                    {link.label}
+                    <Link
+                      className="group flex items-center gap-3 rounded-full border border-white/5 px-4 py-2.5 text-white/75 transition hover:border-white/20 hover:bg-white/10 hover:text-white"
+                      href={link.href}
+                    >
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white transition group-hover:bg-white group-hover:text-slate-900">
+                        {link.icon}
+                      </span>
+                      {link.label}
                     </Link>
                   </li>
                 ))}
